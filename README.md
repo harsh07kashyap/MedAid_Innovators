@@ -1,36 +1,113 @@
-# MedAid (Medical Record and Help System)
+# (MedAid) Medical Record Help System
 
+## Description
+The **MedAid** is designed to streamline the storage, retrieval, and management of patients' medical records, enhancing efficiency and accessibility for healthcare providers. This system provides secure data access, role-based permissions, and streamlined information sharing among medical professionals.
 
-## 1. Introduction:
+## Table of Contents
+- [Problem Statement](#problem-statement)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Technology Stack](#technology-stack)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-### 1.1 Purpose:
-The purpose of this document is to define the requirements for MedAid(Medical Record and Help System). This SRS will provide a clear description of the functionality, constraints, and performance of the system.
+## Problem Statement
+The healthcare industry requires a centralized system to manage patient records securely, support data access among authorized personnel, and improve patient care quality by providing comprehensive data insights.
 
-### 1.2 Scope:
-The system will include features for managing patient records, scheduling appointments, providing medical assistance information, and ensuring data security and compliance with healthcare regulations.
+For more details, refer to the [Problem Statement Document](https://github.com/InternLay-HG/Problem-Statements/blob/main/P10%20%20%20%20Medical-Record-Help-System-srs.md).
 
-### Definitions and Acronyms
-- **SRS**:Software Requirements Specification
-- **EHR**:Electronic Health Record
-- **UI**:User Interface
-- **API**:Application Programming Interface
+## Features
+- **Secure Medical Record Storage**: Encrypts and stores patient information securely.
+- **Role-Based Access Control**: Grants access based on user roles like doctors, nurses, and administrative staff.
+- **Efficient Record Retrieval**: Allows quick and easy access to patient records.
 
-## 2. Overall Description:
+## Installation
 
-### 2.1 Product Perspective:
-MedAid will be a comprehensive platform that can integrate with existing hospital management systems.
+### Prerequisites
+Ensure you have the following software installed:
+- Node.js
+- MongoDB
 
-### 2.2 Product Features:
-- Paient Profile Management
-- Patient requesting Appointments with Doctors
-- Doctors approving/disapproving Appointments
-- Medical History Checking
-- Lab results integration
-- Adding new doctors/nurses in the system
-- Record management of daily major incidents/encounters
+### Setup Steps
+1. **Fork the Repository**:
+   ```bash
+   <https://github.com/InternLay-HG/MedAid_Innovators>
 
-### 2.3 User Classes and Characteristics:
-- Admin: Record management, adding doctors/nurses
-- Doctors: Primary users who consult patients and access patient medical results
-- Nurses: Assist in patient care and record management
-- Patients: Limited access to their own medical records and appointments
+2. **Clone the Repository**:
+   clone your forked repository
+   ```bash
+   git clone <repository-url>
+
+3. **Make Changes(in develop branch)**
+
+4. **Navigate to the Project Directory:**
+    Navigate to backend or frontend directory in which you want to work 
+    ```bash
+    cd backend
+
+5. **Install dependencies**:
+    ```bash
+    npm install
+    npm install express mongoose multer bcrypt cloudinary cors dotenv jsonwebtoken nodemon validator
+
+6. **Set Up Environment Variables**:
+    Create a .env file in the project root and add necessary configurations (e.g., database connection string, JWT secret).
+
+7. **Start the server**:
+    npm run server
+
+## Usage
+
+1. **Running the Application:**
+    After completing installation steps, run the server using npm start and access the web interface via your local host.
+
+1. **Access the Application:**
+    Open a browser and go to http://localhost:<PORT> (default: 4000).
+
+## API Documentation
+
+This section provides an overview of the available API endpoints in the Medical Record Help System. Each endpoint includes details on the method, URL, description, request parameters, and example responses.
+
+| Endpoint                   | Method | Description                               |
+|----------------------------|--------|-------------------------------------------|
+| `/api/admin/login`         | POST   | Admin login                               |
+| `/api/admin/add-doctor`    | POST   | For adding-doctor/nurse                   |
+| `/api/user/register`       | POST   | For patient registaration                 |
+| `/api/user/login`          | PUT    | For patient login                         |
+
+## Technology Stack
+
+- Frontend: React.js
+- Backend: Node.js, Express
+- Database: MongoDB
+- Authentication: JWT (JSON Web Token) for secure login and access control
+
+## Contributing
+
+To contribute to this project:
+1. **Fork the Repository**: Click on the fork button on GitHub and clone your forked repository.
+
+2. **Select develop branch**:
+    ```bash
+    git checkout develop
+    git branch
+
+3. **Make Changes**:  Implement your changes or additions.
+
+4. **Commit Changes**: Write clear and concise commit messages.
+
+5. **Push to Your Branch**: 
+    ```bash
+    git push
+
+6. **Open a Pull Request**:
+    Submit your pull request for review.
+
+## License:
+  This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contact
+  For any questions, suggestions, or issues,create an issue in the repository.
