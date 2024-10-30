@@ -1,5 +1,6 @@
 import styles from "./Header.module.css"
 import { GiHospital } from "react-icons/gi";
+import About from "../About";
 
 const Header = () => {
 
