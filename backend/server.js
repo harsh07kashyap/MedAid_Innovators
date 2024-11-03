@@ -6,6 +6,7 @@ import connectCloudinary from "./config/cloudinary.js"
 import { connect } from "mongoose"
 import adminRouter from "./routes/adminRoute.js"
 import userRouter from "./routes/userRoute.js"
+import doctorRouter from "./routes/doctorRoute.js"
 
 const app=express()
 const port=process.env.PORT || 4000
@@ -23,6 +24,7 @@ app.use(cors())
 
 app.use('/api/admin',adminRouter)  //api to admin login
 app.use('/api/user',userRouter)    //api to patient sign-up
+app.use('/api/doctor',doctorRouter)
 
 app.get('/',(req,res)=>{
     res.send("Api working")
