@@ -20,6 +20,18 @@
   cursor: pointer; /* Pointer cursor on hover */
 }
 
+
+.myClass3{  background-color: white; /* Green background */
+  color: black; /* White text */
+  font-size: 14px; /* Larger font size */
+  height: 30px; /* Increased height */
+  width: 150px; /* Increased width */
+  border:2px;
+  border-color: black;
+  border-radius: 30px; /* Optional: rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
 .header{
   width: 82%;
 }

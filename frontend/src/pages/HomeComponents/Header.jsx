@@ -1,6 +1,7 @@
 import styles from "./Header.module.css"
 import { GiHospital } from "react-icons/gi";
 import About from "../About";
+import {Link} from "react-router-dom"
 
 const Header = () => {
 
@@ -20,15 +21,16 @@ const Header = () => {
                   </nav>
 
               <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" className={`${styles.myClass1} nav-link px-2`}>HOME</a></li>
-                <li><a href="#" className={`${styles.myClass1} nav-link px-2`}>ALL DOCTORS</a></li>
-                <li><a href="#" className={`${styles.myClass1} nav-link px-2`}>ABOUT</a></li>
-                <li><a href="#" className={`${styles.myClass1} nav-link px-2`}>CONTACT</a></li>
-                <li><a href="#" className={`${styles.myClass1} nav-link px-2`}>About</a></li>
+                <li><Link to="/" className={`${styles.myClass1} nav-link px-2`}>HOME</Link></li>
+                <li><Link to="/" className={`${styles.myClass1} nav-link px-2`}>ALL DOCTORS</Link></li>
+                <li><Link to="/about" className={`${styles.myClass1} nav-link px-2`}>ABOUT</Link></li>
+                <li><Link to="/contact" className={`${styles.myClass1} nav-link px-2`}>CONTACT</Link></li>
+                <Link className={styles.myClass3} to="/" title="Admin/Doctor/Nurse Login" role="button">Admin Panel</Link>
               </ul>
 
              <div >
-                <button type="button" className={styles.myClass2}>Create account</button>
+                {/* <button type="button" className={styles.myClass2}>Create account</button> */}
+                <Link className={styles.myClass2} to="/" title="Patient account creation" role="button">Create account</Link>
              </div>
 
            </header>
