@@ -12,8 +12,13 @@ const patientSchema=new mongoose.Schema({
     weight:{type:String,default:"Not filled"},
     health_problem:{type:String,default:"Not filled"},
     prescribed_medicine:{type:String,default:"Not filled"},
-    health_update:{type:String,default:"Not filled"}
-
+    health_update:{type:String,default:"Not filled"},
+    appointments: [{
+        doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'doctors_nurses' },
+        date: { type: Date },
+        time: { type: String },
+        status: { type: String, enum: ['Pending', 'Accepted', 'Rejected'], default: 'Pending' }
+    }]
 })
 
 const patientsModel= mongoose.models.patients || mongoose.model('patients',patientSchema)

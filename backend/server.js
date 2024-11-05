@@ -16,6 +16,8 @@ connectCloudinary()
 
 //middlewares
 app.use(express.json())
+// Middleware to parse URL-encoded form data
+app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
 //api endpoints
