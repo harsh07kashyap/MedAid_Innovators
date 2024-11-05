@@ -9,13 +9,13 @@ const HeroAbout = () => {
         </div>
         <div className={styles.heading}>
              <div class="col-md-7 order-md-2">
-               <p className={styles.para} >Welcome to Prescripto, your trusted partner in managing  your healthcare <br/>needs  conveniently and efficiently. At Prescripto, we understand the challenges <br/> individuals  face when it comes to scheduling doctor appointments and <br/> managing their health records</p>
+               <p className={styles.para} >Welcome to MedAid_Innovators, your trusted partner in managing  your healthcare <br/>needs  conveniently and efficiently. At MedAid_Innovators, we understand the challenges <br/> individuals  face when it comes to scheduling doctor appointments and <br/> managing their health records</p>
                <p className={styles.para}>
-               Prescripto is committed to excellence in healthcare technology. We continuously <br/> strive to enhance our platform, integrating the latest advancements to improve user experience and deliver superior service. Whether you're booking your first <br/> appointment or managing ongoing care, Prescripto is here to support you every <br/> step of the way
+               MedAid_Innovators is committed to excellence in healthcare technology. We continuously <br/> strive to enhance our platform, integrating the latest advancements to improve user experience and deliver superior service. Whether you're booking your first <br/> appointment or managing ongoing care, MedAid_Innovators is here to support you every <br/> step of the way
                </p>
                <h5>Our Vision</h5>
                <p className={styles.para}>
-               Our vision at Prescripto is to create a seamless healthcare experience for every user. <br/> We aim to bridge the gap between patients and healthcare providers, making it easier <br/> for you to access the care you need, when you need it.
+               Our vision at MedAid_Innovators is to create a seamless healthcare experience for every user. <br/> We aim to bridge the gap between patients and healthcare providers, making it easier <br/> for you to access the care you need, when you need it.
                </p>
              </div>
              <div class="col-md-5 order-md-1">

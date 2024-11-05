@@ -22,15 +22,15 @@ const Header = () => {
 
               <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><Link to="/" className={`${styles.myClass1} nav-link px-2`}>HOME</Link></li>
-                <li><Link to="/" className={`${styles.myClass1} nav-link px-2`}>ALL DOCTORS</Link></li>
+                <li><Link to="/allDoctor" className={`${styles.myClass1} nav-link px-2`}>ALL DOCTORS</Link></li>
                 <li><Link to="/about" className={`${styles.myClass1} nav-link px-2`}>ABOUT</Link></li>
                 <li><Link to="/contact" className={`${styles.myClass1} nav-link px-2`}>CONTACT</Link></li>
-                <Link className={styles.myClass3} to="/" title="Admin/Doctor/Nurse Login" role="button">Admin Panel</Link>
+                <li><Link to="/" className={`${styles.myClass3} nav-link px-2`}  title="Admin/Doctor/Nurse Login" role="button" >Admin Panel</Link></li>
               </ul>
 
              <div >
                 {/* <button type="button" className={styles.myClass2}>Create account</button> */}
-                <Link className={styles.myClass2} to="/" title="Patient account creation" role="button">Create account</Link>
+                <Link className={`${styles.myClass2} nav-link px-2`} to="/" title="Patient account creation" role="button">Create account</Link>
              </div>
 
            </header>
