@@ -30,7 +30,7 @@ const Header = () => {
 
              <div >
                 {/* <button type="button" className={styles.myClass2}>Create account</button> */}
-                <Link className={`${styles.myClass2} nav-link px-2`} to="/" title="Patient account creation" role="button">Create account</Link>
+                <Link className={`${styles.myClass2} nav-link px-2`} to="/createAccount" title="Patient account creation" role="button">Create account</Link>
              </div>
 
            </header>

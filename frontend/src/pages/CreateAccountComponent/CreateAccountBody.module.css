@@ -1,0 +1,15 @@
+.topform{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formClass{
+  border: 0.5px solid rgb(219, 217, 217);
+  margin: 40px 0px 50px 0px;
+  width: 400px;
+}
+
+.form{
+  margin: 40px;
+}
