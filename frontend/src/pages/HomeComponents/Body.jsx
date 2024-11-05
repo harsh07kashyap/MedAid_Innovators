@@ -35,7 +35,7 @@ const Body = () => {
                   </div>
                   <p className={styles.para}>Pediatricians</p>
               </div>
-              <div>
+              <div className={styles.buttonHover}>
                   <div className={styles.button5}>
                   <img className={styles.image234} src="https://cdn-icons-png.freepik.com/512/9445/9445780.png"></img>
                   </div>
@@ -60,7 +60,7 @@ const Body = () => {
          <div className={`${styles.boxx} row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3`}>
 
              <div className={`${styles.innerBox} col`}>
-               <div class="card shadow-sm">
+               <div className="card shadow-sm">
                  <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc1.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
@@ -76,7 +76,7 @@ const Body = () => {
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
                      <p className={styles.para2}>Dr. Emily Larson </p>
-                     <p className={styles.para3}>General physician</p>
+                     <p className={styles.para3}>Gynecologist</p>
                   </div>
   
                </div>
@@ -87,8 +87,8 @@ const Body = () => {
                <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc3.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
-                     <p className={styles.para2}>Dr. Richard James </p>
-                      <p className={styles.para3}>General physician</p>
+                     <p className={styles.para2}>Dr. Sarah Patel </p>
+                      <p className={styles.para3}>Dermatologist</p>
                   </div>
                </div>
              </div>
@@ -98,8 +98,8 @@ const Body = () => {
                <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc4.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
-                     <p className={styles.para2}>Dr. Richard James </p>
-                     <p className={styles.para3}>General physician</p>
+                     <p className={styles.para2}>Dr. Christopher Lee </p>
+                     <p className={styles.para3}>Pediatricians</p>
                   </div>
                </div>
              </div>
@@ -109,8 +109,8 @@ const Body = () => {
                <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc5.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
-                     <p className={styles.para2}>Dr. Richard James </p>
-                     <p className={styles.para3}>General physician</p>
+                     <p className={styles.para2}>Dr. Jennifer Garcia </p>
+                     <p className={styles.para3}>Neurologist</p>
                   </div>
                </div>
              </div>
@@ -120,8 +120,8 @@ const Body = () => {
                <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc6.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
-                     <p className={styles.para2}>Dr. Richard James </p>
-                     <p className={styles.para3}>General physician</p>
+                     <p className={styles.para2}>Dr. Andrew Williams </p>
+                     <p className={styles.para3}>Gastroenterologist</p>
                   </div>
                </div>
              </div>
@@ -131,7 +131,7 @@ const Body = () => {
                <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc7.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
-                     <p className={styles.para2}>Dr. Richard James </p>
+                     <p className={styles.para2}>Dr. Christopher Davis</p>
                      <p className={styles.para3}>General physician</p>
                   </div>
                </div>
@@ -143,8 +143,8 @@ const Body = () => {
                <img class="bg-[#EAEFFF]" src="https://raw.githubusercontent.com/avinashdm/gs-images/main/prescripto/doc8.png" alt=""/>
                  <div class="card-body">
                      <p className={styles.para1}>Available</p>
-                     <p className={styles.para2}>Dr. Richard James </p>
-                     <p className={styles.para3}>General physician</p>
+                     <p className={styles.para2}>Dr. Timothy White</p>
+                     <p className={styles.para3}>Gynecologist</p>
                   </div>
                </div>
              </div>
