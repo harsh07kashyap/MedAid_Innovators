@@ -9,8 +9,13 @@ const doctorSchema=new mongoose.Schema({
     about:{type:String,required:true},
     contact_info:{type:String,required:true},
     address:{type:String,required:true},
-    available:{type:String,default:"Not filled"},
-    slots_booked:{type:String,default:""},
+    available_slots: [{ day: String, time: String }], // New field
+    appointments: [{
+        patientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patients' },
+        date: { type: Date },
+        time: { type: String },
+        status: { type: String, enum: ['Pending', 'Accepted', 'Rejected'], default: 'Pending' }
+    }],
     fees:{type:Number},
     role:{type:String,required:true},
     license_number:{type:String,required:true}

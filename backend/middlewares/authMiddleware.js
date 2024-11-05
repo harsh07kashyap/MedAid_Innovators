@@ -23,14 +23,14 @@ const authMiddleware = async (req, res, next) => {
     // Check if the user is in the doctors/nurses collection
     const doctor = await doctorsModel.findById(userId);
     if (doctor) {
-      req.user = { ...doctor.toObject(), type: doctor.role }; // doctor.role could be "Doctor" or "Nurse"
+      req.user = { id: doctor._id, type: doctor.role }; // doctor.role could be "Doctor" or "Nurse"
       return next();
     }
 
     // Check if the user is in the patients collection
     const patient = await patientsModel.findById(userId);
     if (patient) {
-      req.user = { ...patient.toObject(), type: "Patient" };
+      req.user = { id: patient._id, type: "Patient" };
       return next();
     }
 

@@ -8,7 +8,7 @@ import path from "path"
 // api for adding doctors
 const addDoctor=async (req,res)=>{
     try{
-        const {name,email,password,degree,about,contact_info,address,available,slots_booked,fees,role,license_number}=req.body;
+        const {name,email,password,degree,about,contact_info,address,available_slots,fees,role,license_number}=req.body;
         
         const imageFile=req.file;
         
@@ -32,6 +32,9 @@ const addDoctor=async (req,res)=>{
         const imageUpload=await cloudinary.uploader.upload(imageFile.path,{resource_type:"image"})
         const imageUrl=imageUpload.secure_url
 
+        // Structure available_slots from request (expected as an array of objects)
+        const parsedAvailableSlots = available_slots ? JSON.parse(available_slots) : [];
+
         const doctorData={
             name,
             email,
@@ -41,8 +44,8 @@ const addDoctor=async (req,res)=>{
             about,
             contact_info,
             address,
-            available,
-            slots_booked,
+            available_slots: parsedAvailableSlots,
+            appointments: [],
             fees,
             role,
             license_number

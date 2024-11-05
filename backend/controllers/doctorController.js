@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken"
 // import {v2 as cloudinary} from "cloudinary"
+import mongoose from "mongoose"
+import patientsModel from "../models/Patients.js";
 import doctorsModel from "../models/Doctors_Nurses.js";
 import bcrypt from "bcrypt"
 import path from "path"
@@ -42,8 +44,8 @@ const loginDoctorOrNurse=async(req,res)=>{
             about: doctor.about,
             contact_info: doctor.contact_info,
             address: doctor.address,
-            available: doctor.available,
-            slots_booked: doctor.slots_booked,
+            // available: doctor.available,
+            // slots_booked: doctor.slots_booked,
             fees: doctor.fees,
           },
         });
@@ -53,5 +55,41 @@ const loginDoctorOrNurse=async(req,res)=>{
       }
 }
 
+const respondAppointment = async (req, res) => {
+  try {
+    const { doctorId, appointmentId } = req.params;
+    const { status } = req.body;
 
-export {loginDoctorOrNurse}
+    // Update appointment status in doctor's record
+    const doctor = await doctorsModel.findById(doctorId);
+    const appointment = doctor?.appointments.id(appointmentId);
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found in doctor's record." });
+    }
+
+    appointment.status = status;
+    await doctor.save();
+
+    // Update appointment status in patient's record
+    const patient = await patientsModel.findById(appointment.patientId);
+    if (!patient) {
+      return res.status(404).json({ message: "Patient not found." });
+    }
+
+    const patientAppointment = patient.appointments.find(app => app._id.equals(appointmentId));
+    if (!patientAppointment) {
+      return res.status(404).json({ message: "Appointment not found in patient's record." });
+    }
+
+    patientAppointment.status = status;
+    await patient.save();
+
+    res.status(200).json({ message: `Appointment ${status.toLowerCase()} successfully.` });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+export {loginDoctorOrNurse,respondAppointment}
