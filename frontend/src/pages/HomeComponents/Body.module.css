@@ -11,6 +11,10 @@
   border-radius: 50%;
 }
 
+.cont:hover{
+  height: 100px;
+}
+
 .image234{
   height: 100px;
   width: 100px;
@@ -22,6 +26,7 @@
   color: rgb(80, 77, 77);
   margin-top: 10px;
   margin-left: 10px;
+  text-decoration: none;
 }
 
 .boxx{
@@ -111,8 +116,20 @@
    border-radius: 20px;
    border: none;
    font-weight: 500;
-   color: rgb(68, 64, 64);
+   color: darkolivegreen;
 }
+
+.lower_container2:hover{
+  margin-top: 17px;
+  height: 52px;
+  width: 182px;
+}
+
+/* .inner{
+  font-weight: 500;
+  color: darkolivegreen;
+  text-decoration: none;
+} */
 
 .image{
   margin-top: 50px;
