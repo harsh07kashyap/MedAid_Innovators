@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Hero.module.css"
 const Hero = () => {
     return (
@@ -14,7 +15,9 @@ const Hero = () => {
                        schedule your appointment hassle-free.</p>
                    </div>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                     <button type="button" className={styles.button}>Book appointment -</button>
+                     <button type="button" className={styles.button}>
+                      <span><Link to="./allDoctor" className={styles.inner}>Book appointment -</Link></span>
+                     </button>
                   </div>
               </div>
                  <div >
