@@ -34,11 +34,12 @@
     width: 230px;
     border: none;
     border-radius: 20px;
+    font-weight: 500;
+    color: darkolivegreen;
 }
-.inner{
-   font-weight: 500;
-   color: darkolivegreen;
-   text-decoration: none;
+
+.inner:hover{
+   font-size: 15px;
  }
 
 .image{

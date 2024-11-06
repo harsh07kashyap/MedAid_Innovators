@@ -167,9 +167,8 @@ const Body = () => {
               <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
                 <h1 className={styles.lower_container1}>Book Appointment <br/> With 100+ Trusted <br/> Doctors</h1>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                  <button type="button" className={styles.lower_container2}>
-                  <span><Link to="./createAccount"  className={styles.inner}>Create account</Link></span>
-                  </button>
+                 <Link to="./createAccount"> <button type="button" className={styles.lower_container2}>Create account
+                  </button></Link>
                 </div>
               </div>
               <div className={`${styles.lower_container3} `}>
