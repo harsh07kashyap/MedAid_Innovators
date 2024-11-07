@@ -66,21 +66,22 @@ const loginUser=async(req,res)=>{
 }
 
 
-const userProfile=async(req,res)=>{
-    try{
-        const userId=req.user.id
-        // console.log(userId)
-        const user=await patientsModel.findById(userId)
-
-        if(!user) return res.json({success:false,message:"User not found"})
-        
-        return res.json(user)
+const userProfile = async (req, res) => {
+    try {
+      const userId = req.user.id;
+      console.log(userId);
+      const user = await patientsModel.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+      
+      return res.status(200).json({ success: true, data: user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: error.message });
     }
-    catch(error){
-        console.log(error);
-        res.json({successs:false,message:error.message})
-    }
-}
+  };
 
 
 
