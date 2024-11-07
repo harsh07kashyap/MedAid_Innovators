@@ -31,6 +31,7 @@ const authMiddleware = async (req, res, next) => {
     const patient = await patientsModel.findById(userId);
     if (patient) {
       req.user = { id: patient._id, type: "Patient" };
+      console.log(req.user.id)
       return next();
     }
 
