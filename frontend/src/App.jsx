@@ -7,6 +7,7 @@ import All_Doctor from "./pages/ALL_Doctor";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateAccount from "./pages/CreateAccount";
 import LoginPage from "./pages/LoginPage";
+import Profile from "./pages/Profile";
 import GeneralPhysician from "./pages/AllDoctorComponents/GeneralPhysician";
 import Gynecologist from "./pages/AllDoctorComponents/Gynecologist";
 import Dermatologist from "./pages/AllDoctorComponents/Dermatologist";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/contact" exact element={<Contact/>} />
             <Route path="/createAccount" exact element={<CreateAccount/>} />
             <Route path="/loginPage" exact element={<LoginPage/>} />
+            <Route path="/profilePage" exact element={<Profile/>} />
             <Route path="/GeneralPhysician" exact element={<GeneralPhysician/>} />
             <Route path="/Gynecologist" exact element={<Gynecologist/>} />
             <Route path="/Dermatologist" exact element={<Dermatologist/>} />
