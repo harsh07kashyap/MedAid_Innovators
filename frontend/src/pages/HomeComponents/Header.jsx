@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   const handleProfileClick=()=>{
-    navigate("/createAccount")
+    navigate("/profilePage")
   }
 
   const fetchProfilePics = async () => {
