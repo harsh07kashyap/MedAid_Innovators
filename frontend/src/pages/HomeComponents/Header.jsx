@@ -2,7 +2,7 @@ import styles from "./Header.module.css";
 import { GiHospital } from "react-icons/gi";
 import About from "../About";
 import { Link, useNavigate } from "react-router-dom";
-const localhosts = "http://localhost:4000";
+const localhosts = "https://medaid-backend.onrender.com";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
