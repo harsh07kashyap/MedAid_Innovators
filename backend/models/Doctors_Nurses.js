@@ -18,6 +18,7 @@ const doctorSchema=new mongoose.Schema({
     }],
     fees:{type:Number},
     role:{type:String,required:true},
+    speciality: { type: String, required: function() { return this.role === 'Doctor'; } }, // Add specialty field with conditional requirement
     license_number:{type:String,required:true}
 })
 

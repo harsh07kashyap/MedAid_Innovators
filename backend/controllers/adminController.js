@@ -8,11 +8,11 @@ import path from "path"
 // api for adding doctors
 const addDoctor=async (req,res)=>{
     try{
-        const {name,email,password,degree,about,contact_info,address,available_slots,fees,role,license_number}=req.body;
+        const {name,email,password,degree,about,contact_info,address,available_slots,fees,role,speciality,license_number}=req.body;
         
         const imageFile=req.file;
         
-        console.log(name,email,password,degree,about,contact_info,address,available,slots_booked,fees,role,license_number,imageFile)
+        console.log(name,email,password,degree,about,contact_info,address,available,slots_booked,fees,role,speciality,license_number,imageFile)
 
         if(!name || !email  || !password || !degree || !about || !contact_info || !address || !role || !license_number){
             return res.json({success:false,message:"Missing details"})
@@ -20,6 +20,10 @@ const addDoctor=async (req,res)=>{
 
         if(!validator.isEmail(email)){
             return res.json({success:false,message:"Enter valid email"})
+        }
+
+        if (role === "Doctor" && !speciality) {
+            return res.json({ success: false, message: "Specialty is required for doctors" });
         }
 
         if(password.length<6){
@@ -49,6 +53,11 @@ const addDoctor=async (req,res)=>{
             fees,
             role,
             license_number
+        }
+
+        // Conditionally add specialty if role is "Doctor"
+        if (role === "Doctor") {
+            doctorData.specialty = speciality;
         }
 
         const newDoctor=new doctorsModel(doctorData)
