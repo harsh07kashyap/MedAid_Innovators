@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./CreateAccountBody.module.css";
-const localhosts = "http://localhost:4000";
+const localhosts = "https://medaid-backend.onrender.com";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

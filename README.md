@@ -4,6 +4,7 @@
 The **MedAid** is designed to streamline the storage, retrieval, and management of patients' medical records, enhancing efficiency and accessibility for healthcare providers. This system provides secure data access, role-based permissions, and streamlined information sharing among medical professionals.
 
 ## Table of Contents
+- [Live Website Url](#deployment)
 - [Figma-design](#figma-design)
 - [Problem Statement](#problem-statement)
 - [Features](#features)
@@ -14,6 +15,9 @@ The **MedAid** is designed to streamline the storage, retrieval, and management 
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
+
+## Live Website
+Click this following link to visit our MedAid website: [here](https://medaid-frontend.onrender.com/)
 
 ## Figma-design
 You can view the project design in Figma [here](https://www.figma.com/design/huGWLLeXqRMV6y9IEQ27Me/Medaid--UI-Design?node-id=0-1&node-type=canvas&t=kWeYV5yBga8QQHTM-0)
