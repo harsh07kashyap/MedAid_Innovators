@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import styles from "./Hero.module.css"
-
 const Hero = () => {
     return (
       <> 
@@ -14,8 +14,10 @@ const Hero = () => {
                       <p className="lead">Simply browse through our extensive list of trusted <br/> doctors, <br/>
                        schedule your appointment hassle-free.</p>
                    </div>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-                     <button type="button" className={styles.button}>Book appointment -</button>
+                  <div >
+                    <Link to="./allDoctor"><button type="button" className={styles.button}>
+                      <span className={styles.inner}>Book appointment</span>
+                     </button></Link> 
                   </div>
               </div>
                  <div >

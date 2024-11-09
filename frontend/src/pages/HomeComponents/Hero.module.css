@@ -38,6 +38,10 @@
     color: darkolivegreen;
 }
 
+.inner:hover{
+   font-size: 15px;
+ }
+
 .image{
    margin-top: 110px;
    width: 420px;

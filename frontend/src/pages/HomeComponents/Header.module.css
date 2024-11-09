@@ -10,29 +10,74 @@
   color: rgb(14, 13, 13);
 }
 
-.myClass2{  background-color: rgb(62, 118, 240); /* Green background */
-  color: white; /* White text */
-  font-size: 18px; /* Larger font size */
-  height: 43px; /* Increased height */
-  width: 150px; /* Increased width */
-  border: none;
-  border-radius: 20px; /* Optional: rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
+.myClass3{
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(14, 13, 13);
 }
 
-
-.myClass3{  background-color: white; /* Green background */
-  color: black; /* White text */
-  font-size: 14px; /* Larger font size */
-  height: 30px; /* Increased height */
-  width: 150px; /* Increased width */
-  border:2px;
-  border-color: black;
-  border-radius: 30px; /* Optional: rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
+.myClass2{
+  background-color: rgb(62, 118, 240); 
+  color: white;
+  width: 150px;
+  height: 40px;
+  border: 1px ;
+  border-radius: 10px;
+  padding-top: 8px;
 }
+ 
 
 .header{
   width: 82%;
 }
 
+.profileContainer {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.profilePic {
+  width: 40px; /* Adjust size as needed */
+  height: 40px;
+  border-radius: 50%;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 50px; /* Adjust based on icon size */
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 10;
+}
+
+.dropdownMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdownMenu li {
+  padding: 8px;
+  color: #333;
+  text-align: left;
+}
+
+.dropdownMenu li:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdownMenu a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.dropdownMenu a:hover {
+  text-decoration: underline;
+}
