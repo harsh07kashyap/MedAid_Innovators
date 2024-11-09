@@ -91,5 +91,27 @@ const respondAppointment = async (req, res) => {
 };
 
 
+const getDoctorsBySpecialty = async (req, res) => {
+  try {
+      // Fetch all doctors with role "Doctor"
+      const doctors = await doctorsModel.find({ role: "Doctor" });
 
-export {loginDoctorOrNurse,respondAppointment}
+      // Organize doctors by specialty
+      const doctorsBySpeciality = doctors.reduce((acc, doctor) => {
+          const speciality = doctor.speciality || 'General';
+          if (!acc[speciality]) {
+              acc[speciality] = [];
+          }
+          acc[speciality].push(doctor);
+          return acc;
+      }, {});
+
+      return res.json({ success: true, data: doctorsBySpeciality });
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+export {loginDoctorOrNurse,respondAppointment,getDoctorsBySpecialty}
