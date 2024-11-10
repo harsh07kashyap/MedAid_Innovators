@@ -14,6 +14,7 @@ import Dermatologist from "./pages/AllDoctorComponents/Dermatologist";
 import Pediatricians from "./pages/AllDoctorComponents/Pediatricians";
 import Neurologist from "./pages/AllDoctorComponents/Neurologist";
 import Gastroenterologist from "./pages/AllDoctorComponents/Gastroenterologist";
+import PatientAppointmentPage from "./pages/PatientAppointmentPage"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/createAccount" exact element={<CreateAccount/>} />
             <Route path="/loginPage" exact element={<LoginPage/>} />
             <Route path="/profilePage" exact element={<Profile/>} />
+            <Route path="/appointmentBooking/:doctorId" exact element={<PatientAppointmentPage/>} />
             <Route path="/GeneralPhysician" exact element={<GeneralPhysician/>} />
             <Route path="/Gynecologist" exact element={<Gynecologist/>} />
             <Route path="/Dermatologist" exact element={<Dermatologist/>} />
