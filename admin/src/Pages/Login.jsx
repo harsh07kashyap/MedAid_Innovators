@@ -10,12 +10,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { setAToken, backendUrl } = useContext(AdminContext);
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
       if (state === 'Admin') {
-        const { data } = await axios.post(backendUrl + "api/admin/login", {
+        const { data } = await axios.post( `${backendUrl}/api/admin/login`, {
           email,
           password,
         });
@@ -23,10 +22,24 @@ const Login = () => {
           localStorage.setItem("aToken", data.token);
           setAToken(data.token);
         }
-      } else {
+      }
+      else if (state==='Doctor'){
+        const { data } = await axios.post(`${backendUrl}/api/doctor/login`, {
+          email,
+          password,
+        });
+        if (data.success) {
+          localStorage.setItem("aToken", data.token);
+          setAToken(data.token);
+        }
+      } 
+      else {
         toast.error(data.message);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An error occurred during login.");
+    }
   };
 
   return (
