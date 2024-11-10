@@ -147,4 +147,15 @@ const available_slots=async(req,res)=>{
 }
 
 
-export {registerUser,loginUser,userProfile,bookAppointment,available_slots}
+const getDoctorData=async(req,res)=>{
+  try{ 
+    const {doctorId} =req.params;
+    const doctor=await doctorsModel.findById(doctorId);
+    res.status(200).json(doctor)
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export {registerUser,loginUser,userProfile,bookAppointment,available_slots,getDoctorData}

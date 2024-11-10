@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const localhosts="http://localhost:4000"
 import styles from "./allDoctor.module.css"
 
 const AllDoctors = () => {
   const [doctorsBySpecialty, setDoctorsBySpecialty] = useState({});
+  const navigate=useNavigate();
+
+  const handleClick=(doctorId)=>{
+    navigate(`/appointmentBooking/${doctorId}`)
+  }
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -28,7 +34,7 @@ const AllDoctors = () => {
           <h2 className={styles.specialty_title}>{specialty}</h2>
           <div className={styles.doctor_list}>
             {doctors.map(doctor => (
-              <div key={doctor._id} className={styles.doctor_card}>
+              <div key={doctor._id} className={styles.doctor_card} onClick={() => handleClick(doctor._id)}>
                 <img src={doctor.image} alt={doctor.name} className={styles.doctor_image} />
                 <h3 className={styles.doctor_name}>{doctor.name}</h3>
                 <p className={styles.doctor_specialty}>{doctor.speciality}</p>
