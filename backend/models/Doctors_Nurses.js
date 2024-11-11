@@ -12,7 +12,7 @@ const doctorSchema=new mongoose.Schema({
     available_slots: [{ day: String, time: String }], // New field
     appointments: [{
         patientId: { type: mongoose.Schema.Types.ObjectId, ref: 'patients' },
-        date: { type: Date },
+        day: { type: String },
         time: { type: String },
         status: { type: String, enum: ['Pending', 'Accepted', 'Rejected'], default: 'Pending' }
     }],
