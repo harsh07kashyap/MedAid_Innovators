@@ -102,7 +102,10 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/"
+                onClick={(e) => {
+                  e.preventDefault(); // Prevents the default Link behavior
+                  window.open('http://localhost:5174/', '_blank'); // Opens in a new tab
+                }}
                 className={`${styles.myClass3} nav-link px-2`}
                 title="Admin/Doctor/Nurse Login"
                 role="button"

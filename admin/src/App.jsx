@@ -9,20 +9,26 @@ import {Routes,Route} from "react-router-dom"
 import Dashboard from "./Pages/admin/Dashboard"
 import AddDoctor from "./Pages/admin/AddDoctor"
 import DoctorsList from "./Pages/admin/DoctorsList"
+import { DoctorContext } from './Context/DoctorContext';
+import ManageAppointments from "./Pages/doctor/ManageAppointments"
 
 const App = () => {
   const {aToken} = useContext(AdminContext)
-  return  aToken ?(
+  const {dToken} =useContext(DoctorContext)
+  return  aToken || dToken ?(
     <div className='bg-[#F8F9FD]'> 
      <ToastContainer/>
      <Navbar/>
      <div className='flex items-start'>
       <Sidebar/>
       <Routes>
+        {/* admin routes */}
         <Route path="/" element={<></>} />
-        <Route path="/admin-dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/add-doctor" element={<AddDoctor/>} />
         <Route path="/doctor-list" element={<DoctorsList/>} />
+        
+        <Route path="/manage-appointments" element={<ManageAppointments/>} />
       </Routes>
      </div>
     </div>
