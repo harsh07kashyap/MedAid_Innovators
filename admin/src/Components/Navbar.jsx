@@ -3,16 +3,23 @@ import { AdminContext } from '../Context/AdminContext'
 import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import styles from "../Pages/admin/Dashboard.module.css"
+import { DoctorContext } from '../Context/DoctorContext'
 
 const Navbar = () => {
   const {aToken, setAToken} = useContext(AdminContext)
-
+  const {dToken,setDToken}=useContext(DoctorContext)
   const navigate = useNavigate()
 
   const logout = () => {
     navigate('/')
+    if(aToken){
     aToken && setAToken('')
     aToken && localStorage.removeItem('aToken')
+  }
+    else if(dToken){
+    dToken && setDToken('')
+    dToken && localStorage.removeItem('dToken')
+  }
   }
 
 
