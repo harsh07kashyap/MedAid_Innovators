@@ -12,7 +12,7 @@ const addDoctor=async (req,res)=>{
         
         const imageFile=req.file;
         
-        console.log(name,email,password,degree,about,contact_info,address,fees,role,speciality,license_number,imageFile)
+        console.log(name,email,password,degree,about,contact_info,address,role,license_number,imageFile)
 
         if(!name || !email  || !password || !degree || !about || !contact_info || !address || !role || !license_number){
             return res.json({success:false,message:"Missing details"})
@@ -46,7 +46,6 @@ const addDoctor=async (req,res)=>{
             about,
             contact_info,
             address,
-            fees,
             role,
             license_number
         }
@@ -54,6 +53,7 @@ const addDoctor=async (req,res)=>{
         // Conditionally add specialty if role is "Doctor"
         if (role === "Doctor") {
             doctorData.speciality = speciality;
+            doctorData.speciality=fees;
         }
 
         const newDoctor=new doctorsModel(doctorData)
