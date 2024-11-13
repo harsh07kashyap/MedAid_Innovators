@@ -8,11 +8,11 @@ import path from "path"
 // api for adding doctors
 const addDoctor=async (req,res)=>{
     try{
-        const {name,email,password,degree,about,contact_info,address,available_slots,fees,role,speciality,license_number}=req.body;
+        const {name,email,password,degree,about,contact_info,address,fees,role,speciality,license_number}=req.body;
         
         const imageFile=req.file;
         
-        console.log(name,email,password,degree,about,contact_info,address,available,slots_booked,fees,role,speciality,license_number,imageFile)
+        console.log(name,email,password,degree,about,contact_info,address,fees,role,speciality,license_number,imageFile)
 
         if(!name || !email  || !password || !degree || !about || !contact_info || !address || !role || !license_number){
             return res.json({success:false,message:"Missing details"})
@@ -36,8 +36,6 @@ const addDoctor=async (req,res)=>{
         const imageUpload=await cloudinary.uploader.upload(imageFile.path,{resource_type:"image"})
         const imageUrl=imageUpload.secure_url
 
-        // Structure available_slots from request (expected as an array of objects)
-        const parsedAvailableSlots = available_slots ? JSON.parse(available_slots) : [];
 
         const doctorData={
             name,
@@ -48,8 +46,6 @@ const addDoctor=async (req,res)=>{
             about,
             contact_info,
             address,
-            available_slots: parsedAvailableSlots,
-            appointments: [],
             fees,
             role,
             license_number
@@ -57,7 +53,7 @@ const addDoctor=async (req,res)=>{
 
         // Conditionally add specialty if role is "Doctor"
         if (role === "Doctor") {
-            doctorData.specialty = speciality;
+            doctorData.speciality = speciality;
         }
 
         const newDoctor=new doctorsModel(doctorData)
@@ -67,7 +63,7 @@ const addDoctor=async (req,res)=>{
     }
     catch(error){
         console.log(error);
-        return res.json({successs:false,message:error.message})
+        return res.json({success:false,message:error.message})
     }
 }
 
