@@ -7,20 +7,23 @@ import { DoctorContext } from '../Context/DoctorContext'
 
 const Navbar = () => {
   const {aToken, setAToken} = useContext(AdminContext)
-  const {dToken,setDToken}=useContext(DoctorContext)
+  const {dToken,setDToken,setRole}=useContext(DoctorContext)
   const navigate = useNavigate()
 
   const logout = () => {
-    navigate('/')
-    if(aToken){
-    aToken && setAToken('')
-    aToken && localStorage.removeItem('aToken')
-  }
-    else if(dToken){
-    dToken && setDToken('')
-    dToken && localStorage.removeItem('dToken')
-  }
-  }
+    if (aToken) {
+      setAToken('');
+      localStorage.removeItem('aToken');
+    }
+    
+    if (dToken) {
+      setDToken('');
+      localStorage.removeItem('dToken');
+      setRole(''); // Clear role when logging out from doctor/nurse
+    }
+  
+    navigate('/'); // Redirect to the homepage after clearing tokens
+  };
 
 
   return (
