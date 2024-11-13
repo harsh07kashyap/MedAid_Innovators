@@ -26,7 +26,7 @@ const loginDoctorOrNurse=async(req,res)=>{
     
         // Generate JWT token
         const token = jwt.sign(
-          { id: doctor._id, email: doctor.email }, // Payload
+          { id: doctor._id, email: doctor.email,role:doctor.role }, // Payload
           process.env.JWT_SECRET, // Secret key
         );
     
