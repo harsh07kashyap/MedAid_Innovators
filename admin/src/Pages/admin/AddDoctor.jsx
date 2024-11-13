@@ -1,39 +1,70 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './AddDoctor.module.css';
+import { AdminContext } from "../../Context/AdminContext";
+import axios from "axios"
 
 const AddDoctor = () => {
   const [formData, setFormData] = useState({
+    image:"",
     name: '',
     email: '',
     password: '',
-    speciality: 'General physician',
+    speciality: '',
     degree: '',
     about: '',
     contact_info: '',
-    address1: '',
-    address2: '',
-    available_slots: '',
+    address: '',
     fees: '',
     role: 'Doctor',
     license_number: ''
   });
+  const {backendUrl,aToken}=useContext(AdminContext)
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    setFormData({ ...formData, [name]: files ? files[0] : value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit the form data here
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("image", formData.image);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("password", formData.password);
+    formDataToSend.append("speciality", formData.speciality);
+    formDataToSend.append("degree", formData.degree);
+    formDataToSend.append("about", formData.about);
+    formDataToSend.append("contact_info", formData.contact_info);
+    formDataToSend.append("address", formData.address);
+    formDataToSend.append("fees", formData.fees);
+    formDataToSend.append("role", formData.role);
+    formDataToSend.append("license_number", formData.license_number);
+
+    try {
+      const response = await axios.post(`${backendUrl}/api/admin/add-doctor`, formDataToSend, {
+        headers: {
+          'auth-token': aToken,
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+
+      console.log('Doctor added successfully:', response.data);
+
+    } catch (error) {
+      console.error('Error adding doctor:', error);
+    }
   };
+
 
   return (
     <div className={styles.mainContent}>
       <h2 className={styles.formTitle}>Add Doctor</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit} encType="multipart/form-data">
         <div className={styles.formGroup}>
           <label className={styles.uploadLabel}>Upload doctor picture</label>
-          <input type="file" name="image" className={styles.fileInput} />
+          <input type="file" name="image" id="image" className={styles.fileInput} onChange={handleChange}/>
         </div>
 
         <div className={styles.formRow}>
@@ -42,6 +73,7 @@ const AddDoctor = () => {
             <input
               type="text"
               name="name"
+              id="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Name"
@@ -54,6 +86,7 @@ const AddDoctor = () => {
             <label>Speciality</label>
             <select
               name="speciality"
+              id="speciality"
               value={formData.speciality}
               onChange={handleChange}
               className={styles.selectField}
@@ -63,6 +96,7 @@ const AddDoctor = () => {
               <option value="Cardiologist">Cardiologist</option>
               <option value="Neurologist">Neurologist</option>
               <option value="Pediatrician">Pediatrician</option>
+              <option value="Gynecologist">Gynecologist</option>
               {/* Add more specialties as needed */}
             </select>
           </div>
@@ -74,6 +108,7 @@ const AddDoctor = () => {
             <input
               type="email"
               name="email"
+              id="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
@@ -87,9 +122,10 @@ const AddDoctor = () => {
             <input
               type="text"
               name="degree"
+              id="degree"
               value={formData.degree}
               onChange={handleChange}
-              placeholder="Degree"
+              placeholder="Eg. MBBS"
               className={styles.inputField}
               required
             />
@@ -102,6 +138,7 @@ const AddDoctor = () => {
             <input
               type="password"
               name="password"
+              id="password"
               value={formData.password}
               onChange={handleChange}
               placeholder="Password"
@@ -114,46 +151,42 @@ const AddDoctor = () => {
             <label>Address</label>
             <input
               type="text"
-              name="address1"
-              value={formData.address1}
+              name="address"
+              id="address"
+              value={formData.address}
               onChange={handleChange}
-              placeholder="Address 1"
+              placeholder="Address"
               className={styles.inputField}
               required
             />
-            <input
-              type="text"
-              name="address2"
-              value={formData.address2}
-              onChange={handleChange}
-              placeholder="Address 2"
-              className={styles.inputField}
-            />
+            
           </div>
         </div>
 
         <div className={styles.formRow}>
-          <div className={styles.formGroup}>
-            <label>Experience</label>
-            <input
-              type="text"
-              name="available_slots"
-              value={formData.available_slots}
-              onChange={handleChange}
-              placeholder="Available slots"
-              className={styles.inputField}
-              required
-            />
-          </div>
 
           <div className={styles.formGroup}>
             <label>Fees</label>
             <input
               type="number"
               name="fees"
+              id="fees"
               value={formData.fees}
               onChange={handleChange}
               placeholder="Doctor fees"
+              className={styles.inputField}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label>Contact No.</label>
+            <input
+              type="text"
+              name="contact_info"
+              id="contact_info"
+              value={formData.contact_info}
+              onChange={handleChange}
+              placeholder="Doctor's contact no."
               className={styles.inputField}
               required
             />
@@ -166,6 +199,7 @@ const AddDoctor = () => {
             <input
               type="text"
               name="license_number"
+              id="license_number"
               value={formData.license_number}
               onChange={handleChange}
               placeholder="License Number"
@@ -175,7 +209,22 @@ const AddDoctor = () => {
           </div>
         </div>
 
-        <button type="submit" className={styles.submitButton}>Add Doctor</button>
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label>About</label>
+            <input
+              type="text"
+              name="about"
+              value={formData.about}
+              onChange={handleChange}
+              placeholder="About the doctor"
+              className={styles.inputField}
+              required
+            />
+          </div>
+        </div>
+
+        <button type="submit" onSubmit={handleSubmit} className={styles.submitButton}>Add Doctor</button>
       </form>
     </div>
   );
