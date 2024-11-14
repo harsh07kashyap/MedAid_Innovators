@@ -26,7 +26,7 @@ const Login = () => {
           setAToken(data.token);
         }
       }
-      else if (state==='Doctor'){
+      else if (state==='Doctor/Nurse'){
         const { data } = await axios.post(`${backendUrl}/api/doctor/login`, {
           email,
           password,
@@ -79,10 +79,10 @@ const Login = () => {
         </button>
         {state === "Admin" ? (
           <p>
-            Doctor Login ?
+            Doctor/Nurse Login ?
             <span
               className="text-primary underline cursor-pointer"
-              onClick={() => setState("Doctor")}
+              onClick={() => setState("Doctor/Nurse")}
             >
               Click here
             </span>
