@@ -105,7 +105,7 @@ const Header = () => {
               <Link
                 onClick={(e) => {
                   e.preventDefault(); // Prevents the default Link behavior
-                  window.open('http://localhost:5174/', '_blank'); // Opens in a new tab
+                  window.open('https://medaid-admin.onrender.com/', '_blank'); // Opens in a new tab
                 }}
                 className={`${styles.myClass3} nav-link px-2`}
                 title="Admin/Doctor/Nurse Login"
