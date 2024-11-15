@@ -25,7 +25,7 @@ function App() {
         {/* <About></About> */}
         {/* <Contact></Contact> */}
         {/* <AllDoctor></AllDoctor> */}
-        <Router>
+        
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/allDoctor" exact element={<All_Doctor/>} />
@@ -42,7 +42,7 @@ function App() {
             <Route path="/Neurologist" exact element={<Neurologist/>} />
             <Route path="/Gastroenterologist" exact element={<Gastroenterologist/>}/>
           </Routes>
-        </Router>
+        
     </>
   )
 }

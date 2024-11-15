@@ -2,15 +2,16 @@ import styles from "./Header.module.css";
 import { GiHospital } from "react-icons/gi";
 import About from "../About";
 import { Link, useNavigate } from "react-router-dom";
-const localhosts = "https://medaid-backend.onrender.com";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 import axios from "axios";
+import {UserContext} from "../../Context/ContextProvider"
 
 const Header = () => {
   const [profilePics, setProfilePics] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   let navigate = useNavigate();
+  const {backendUrl}=useContext(UserContext);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -31,7 +32,7 @@ const Header = () => {
       console.log("Auth Token:", token);
       if (token) {
         // Check if token exists before making the request
-        const response = await axios.get(`${localhosts}/api/user/my-profile`, {
+        const response = await axios.get(`${backendUrl}/api/user/my-profile`, {
           headers: { "auth-token": token },
         });
         setProfilePics(response.data.data.image); // Assume response.data.image is the URL for the profile picture

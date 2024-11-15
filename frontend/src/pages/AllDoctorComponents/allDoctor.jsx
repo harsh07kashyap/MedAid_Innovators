@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const localhosts="http://localhost:4000"
 import styles from "./allDoctor.module.css"
+import {UserContext} from "../../Context/ContextProvider"
 
 const AllDoctors = () => {
   const [doctorsBySpecialty, setDoctorsBySpecialty] = useState({});
   const navigate=useNavigate();
+  const {backendUrl}=useContext(UserContext);
 
   const handleClick=(doctorId)=>{
     navigate(`/appointmentBooking/${doctorId}`)
@@ -15,7 +16,7 @@ const AllDoctors = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get(`${localhosts}/api/doctor/allDoctors`);
+        const response = await axios.get(`${backendUrl}/api/doctor/allDoctors`);
         if (response.data.success) {
           setDoctorsBySpecialty(response.data.data);
         }

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./ProfilePage.module.css"
-const localhosts="https://medaid-backend.onrender.com"
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import {UserContext} from "../../Context/ContextProvider"
 
 const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
+    const {backendUrl}=useContext(UserContext);
 
     useEffect(() => {
       const fetchProfile = async () => {
@@ -15,7 +16,7 @@ const ProfilePage = () => {
             console.log("Auth Token:", token);
             if (token) {
               // Check if token exists before making the request
-              const response = await axios.get(`${localhosts}/api/user/my-profile`, {
+              const response = await axios.get(`${backendUrl}/api/user/my-profile`, {
                 headers: { "auth-token": token },
               });
               console.log(response.data.data)
