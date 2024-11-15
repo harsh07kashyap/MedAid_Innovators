@@ -7,6 +7,7 @@ import { connect } from "mongoose"
 import adminRouter from "./routes/adminRoute.js"
 import userRouter from "./routes/userRoute.js"
 import doctorRouter from "./routes/doctorRoute.js"
+import nurseRouter from "./routes/nurseRoute.js"
 
 const app=express()
 const port=process.env.PORT || 4000
@@ -33,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/admin',adminRouter)  //api to admin login
 app.use('/api/user',userRouter)    //api to patient sign-up
 app.use('/api/doctor',doctorRouter)
+app.use('/api/nurse',nurseRouter)
 
 app.get('/',(req,res)=>{
     res.send("Api working")

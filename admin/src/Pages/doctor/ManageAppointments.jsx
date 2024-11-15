@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { DoctorContext } from '../../Context/DoctorContext';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const ManageAppointments = () => {
   const { dToken, backendUrl } = useContext(DoctorContext);
@@ -57,7 +58,9 @@ const ManageAppointments = () => {
         <tbody>
           {appointments.map((appointment) => (
             <tr key={appointment._id}>
-              <td className="py-2 px-4 border-b">{appointment.patientName}</td>
+              <td className="py-2 px-4 border-b"><Link to={`/patientData/${appointment.patientId._id}`} className="text-blue-500 underline">
+                  {appointment.patientName}
+                </Link></td>
               <td className="py-2 px-4 border-b">{appointment.day}</td>
               <td className="py-2 px-4 border-b">{appointment.time}</td>
               <td className="py-2 px-4 border-b">{appointment.status}</td>

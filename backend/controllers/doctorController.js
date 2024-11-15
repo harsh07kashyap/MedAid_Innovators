@@ -60,9 +60,9 @@ const respondAppointment = async (req, res) => {
     const { doctorId, appointmentId } = req.params;
     const { status } = req.body;
 
-    console.log("Doctor ID:", doctorId);
-    console.log("Appointment ID:", appointmentId);
-    console.log("New Status:", status);
+    // console.log("Doctor ID:", doctorId);
+    // console.log("Appointment ID:", appointmentId);
+    // console.log("New Status:", status);
 
     // Update appointment status in doctor's record
     const doctor = await doctorsModel.findById(doctorId);
@@ -162,5 +162,21 @@ const getDoctorsBySpecialty = async (req, res) => {
   }
 };
 
+const patientData=async (req,res)=>{
+  try {
+    const {patientId} = req.params;
+    console.log(patientId);
+    const user = await patientsModel.findById(patientId);
 
-export {loginDoctorOrNurse,respondAppointment,getDoctorsBySpecialty,getDoctorAppointments}
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    
+    return res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+export {loginDoctorOrNurse,respondAppointment,getDoctorsBySpecialty,getDoctorAppointments,patientData}

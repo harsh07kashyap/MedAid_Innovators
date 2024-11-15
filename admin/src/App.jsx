@@ -14,6 +14,8 @@ import ManageAppointments from "./Pages/doctor/ManageAppointments"
 import AddNurse from "./Pages/admin/AddNurse"
 import ManagePatient from "./Pages/nurse/ManagePatient"
 import Home from "./Pages/Home"
+import PatientProfile from './Pages/doctor/PatientProfile';
+import PatientList from './Pages/nurse/PatientList';
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
@@ -21,8 +23,8 @@ const App = () => {
   
   // Define allowed paths for each role
   const roleRoutes = {
-    Doctor: ["/", "/manage-appointments", "/doctor-list"],
-    Nurse: ["/", "/manage-patient", "/doctor-list"], 
+    Doctor: ["/", "/manage-appointments", "/doctor-list","/patientData/:patientId"],
+    Nurse: ["/", "/updatePatientData/:patientId","/allPatients", "/doctor-list"], 
     Admin: ["/", "/dashboard", "/add-doctor", "/add-nurse", "/doctor-list"],
   };
 
@@ -49,7 +51,9 @@ const App = () => {
           {allowedRoutes.includes("/add-nurse") && <Route path="/add-nurse" element={<AddNurse />} />}
           {allowedRoutes.includes("/doctor-list") && <Route path="/doctor-list" element={<DoctorsList />} />}
           {allowedRoutes.includes("/manage-appointments") && <Route path="/manage-appointments" element={<ManageAppointments />} />}
-          {allowedRoutes.includes("/manage-patient") && <Route path="/manage-patient" element={<ManagePatient />} />}
+          {allowedRoutes.includes("/updatePatientData/:patientId") && <Route path="/updatePatientData/:patientId" element={<ManagePatient />} />}
+          {allowedRoutes.includes("/allPatients") && <Route path="/allPatients" element={<PatientList />} />}
+          {allowedRoutes.includes("/patientData/:patientId") && <Route path="/patientData/:patientId" element={<PatientProfile />} />}
 
           {/* Fallback route if no path matches */}
           <Route path="*" element={<Navigate to="/" replace />} />
