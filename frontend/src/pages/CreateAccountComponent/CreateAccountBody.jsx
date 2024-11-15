@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./CreateAccountBody.module.css";
-const localhosts = "https://medaid-backend.onrender.com";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import {UserContext} from "../../Context/ContextProvider"
 
 const CreateAccuntBody = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
+  const {backendUrl}=useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const CreateAccuntBody = () => {
       email: credentials.email,
       password: credentials.password,
     };
-    const response = await fetch(`${localhosts}/api/user/register`, {
+    const response = await fetch(`${backendUrl}/api/user/register`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",

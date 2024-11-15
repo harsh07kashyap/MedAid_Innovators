@@ -1,17 +1,15 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import styles from "./PatientPageForAppointment.module.css"
-const localhosts="http://localhost:4000"
 import { useParams } from 'react-router-dom'
 import axios from "axios"
+import {UserContext} from "../../Context/ContextProvider"
 
 const PatientPageForAppointment = () => {
     const {doctorId} =useParams()
     const [doctorData,setDoctorData]=useState(null)
     const [selectedDate, setSelectedDate] = useState('SUN 10');
     const [selectedTime, setSelectedTime] = useState('');
-
-    const dates = ['SUN 10', 'MON 11', 'TUE 12', 'WED 13', 'THU 14', 'FRI 15', 'SAT 16'];
-    const times = ['01:00 pm', '01:30 pm', '02:00 pm', '02:30 pm', '03:00 pm', '03:30 pm', '04:00 pm'];
+    const {backendUrl}=useContext(UserContext);
 
     const handleDateClick = (date) => {
         setSelectedDate(date);
@@ -35,7 +33,7 @@ const PatientPageForAppointment = () => {
           const time = selectedTime; // Example format: "5:00 pm"
 
           const response = await axios.post(
-            `${localhosts}/api/user/appointments/book/${doctorId}`,
+            `${backendUrl}/api/user/appointments/book/${doctorId}`,
             { day, time },
             { headers: { "auth-token": token } } // headers go here as the third argument
         );
@@ -50,7 +48,7 @@ const PatientPageForAppointment = () => {
     useEffect(() => {
         const fetchDoctorData = async () => {
           try {
-            const response = await axios.get(`${localhosts}/api/user/doctorData/${doctorId}`);
+            const response = await axios.get(`${backendUrl}/api/user/doctorData/${doctorId}`);
               setDoctorData(response.data);
             
           } catch (error) {
