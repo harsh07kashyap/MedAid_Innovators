@@ -94,9 +94,11 @@ const AddDoctor = () => {
             >
               <option value="General physician">General physician</option>
               <option value="Cardiologist">Cardiologist</option>
-              <option value="Neurologist">Neurologist</option>
+              <option value="Dermatologist">Dermatologist</option>
               <option value="Pediatrician">Pediatrician</option>
+              <option value="Neurologist">Neurologist</option>
               <option value="Gynecologist">Gynecologist</option>
+              <option value="Gastroenterologist">Gastroenterologist</option>
               {/* Add more specialties as needed */}
             </select>
           </div>

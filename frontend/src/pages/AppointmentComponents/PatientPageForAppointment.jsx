@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react'
 import styles from "./PatientPageForAppointment.module.css"
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from "axios"
 import {UserContext} from "../../Context/ContextProvider"
 
@@ -10,6 +10,7 @@ const PatientPageForAppointment = () => {
     const [selectedDate, setSelectedDate] = useState('SUN 10');
     const [selectedTime, setSelectedTime] = useState('');
     const {backendUrl}=useContext(UserContext);
+    const navigate=useNavigate();
 
     const handleDateClick = (date) => {
         setSelectedDate(date);
@@ -24,6 +25,10 @@ const PatientPageForAppointment = () => {
     const handleAppointmentBooking = async () => {
       try {
           const token = localStorage.getItem("token");
+          if(!token){
+            navigate('/loginPage');
+            return;
+          }
           if (!selectedDate || !selectedTime) {
               alert("Please select both a date and time.");
               return;
