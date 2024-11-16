@@ -16,8 +16,9 @@
 
 .image {
   height: auto;
-  width: 100%; 
+  width: 90%; 
   max-width: 380px;
+  margin: 15px 20px 15px 0px;
 }
 
 .para {
@@ -80,11 +81,13 @@
 
   .para {
     font-size: 0.875rem;
+    margin: 5px 15px 10px 25px; 
   }
 
   .bottom {
-    font-size: 1.125rem;
     margin-left: 10px; 
+    font-size: 1.375rem;
+     font-weight: 500;
   }
 
   .topic,
@@ -94,6 +97,17 @@
 
   .topic1 {
     font-size: 0.875rem;
+  }
+
+  .image{
+    height: auto;
+    width: 100%; 
+    max-width: 280px;
+    margin-bottom: 15px;
+  }
+
+  .vision{
+    margin: 15px 0px 10px 15px;
   }
 }
 
@@ -112,7 +126,7 @@
 
   .bottom {
     font-size: 1rem;
-    margin-left: 5px; 
+    margin-left: 25px; 
   }
 
   .topic,

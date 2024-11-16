@@ -10,8 +10,8 @@ const Hero = () => {
                   <h1 className={`${styles.heading1} `}>Book Appointment
                     With Trusted Doctors</h1>
                    <div className={styles.heading1}>
-                       <img className="w-full md:absolute bottom-0 h-auto rounded-lg" src="https://prescripto.vercel.app/assets/group_profiles-BCL6AVF5.png" alt=""/>
-                      <p className="lead">Simply browse through our extensive list of trusted  doctors, <br/>
+                       <img  src="https://prescripto.vercel.app/assets/group_profiles-BCL6AVF5.png" alt=""/>
+                      <p className="lead">Simply browse through our extensive list of trusted <br/> doctors, <br/>
                        schedule your appointment hassle-free.</p>
                    </div>
                   <div >

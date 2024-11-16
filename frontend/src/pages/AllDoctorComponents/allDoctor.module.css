@@ -2,25 +2,25 @@
 
 .container {
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin: 30px 0px 30px 80px; 
+    flex-wrap: wrap; 
 }
 
 .specialty_section {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .specialty_title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #333;
+    font-size: 1.875rem; 
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3d3c3c;
 }
 
 .doctor_list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-wrap: wrap; 
+    gap: 50px; 
 }
 
 .doctor_card {
@@ -28,10 +28,12 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 200px;
+    width: 100%; /* Full width for smaller screens */
+    max-width: 235px; /* Fixed width up to this size */
     text-align: center;
     background-color: #f9f9f9;
     transition: transform 0.3s ease;
+    margin-bottom: 20px; /* Adding margin for better spacing on small screens */
 }
 
 .doctor_card:hover {
@@ -40,25 +42,62 @@
 
 .doctor_image {
     width: 100%;
-    height: 150px;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 230px; /* Maximum height for large screens */
     object-fit: cover;
     border-bottom: 1px solid #ddd;
 }
 
 .doctor_name {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0 5px;
-    color: #333;
+    color: rgb(5, 5, 5);
+    font-size: 1.375rem; /* Using relative units */
+    margin-bottom: 3px;
+}
+
+.action {
+    text-align: left;
+    margin-left: 20px;
 }
 
 .doctor_specialty {
-    font-size: 16px;
-    color: #777;
+    font-size: 1rem; /* Using relative units */
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: rgb(107, 105, 105);
 }
 
 .availability_status {
-    color: green;
-    font-weight: bold;
-    margin-bottom: 15px;
+    color: rgb(34, 197, 94);
+    font-size: 1.03rem; /* Using relative units */
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .specialty_title {
+        font-size: 1.5rem; 
+    }
+    .doctor_card {
+        max-width: 200px; 
+    }
+
+    .doctor_name {
+        font-size: 1.2rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .specialty_title {
+        font-size: 1.2rem; 
+    }
+
+    .doctor_card {
+        max-width: 180px; 
+    }
+
+    .doctor_name {
+        font-size: 1rem; 
+    }
 }

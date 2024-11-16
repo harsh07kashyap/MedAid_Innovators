@@ -13,7 +13,7 @@ const HeroAbout = () => {
                <p className={styles.para}>
                MedAid_Innovators is committed to excellence in healthcare technology. We continuously <br/> strive to enhance our platform, integrating the latest advancements to improve user experience and deliver superior service. Whether you're booking your first <br/> appointment or managing ongoing care, MedAid_Innovators is here to support you every <br/> step of the way
                </p>
-               <h5>Our Vision</h5>
+               <h5 className={styles.vision}>Our Vision</h5>
                <p className={styles.para}>
                Our vision at MedAid_Innovators is to create a seamless healthcare experience for every user. <br/> We aim to bridge the gap between patients and healthcare providers, making it easier <br/> for you to access the care you need, when you need it.
                </p>
