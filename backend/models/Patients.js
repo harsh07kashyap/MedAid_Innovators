@@ -15,7 +15,7 @@ const patientSchema=new mongoose.Schema({
     health_update:{type:String,default:"Not filled"},
     appointments: [{
         doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'doctors_nurses' },
-        date: { type: Date },
+        day: { type: String },
         time: { type: String },
         status: { type: String, enum: ['Pending', 'Accepted', 'Rejected'], default: 'Pending' }
     }]

@@ -8,11 +8,11 @@ import path from "path"
 // api for adding doctors
 const addDoctor=async (req,res)=>{
     try{
-        const {name,email,password,degree,about,contact_info,address,available_slots,fees,role,license_number}=req.body;
+        const {name,email,password,degree,about,contact_info,address,fees,role,speciality,license_number}=req.body;
         
         const imageFile=req.file;
         
-        console.log(name,email,password,degree,about,contact_info,address,available,slots_booked,fees,role,license_number,imageFile)
+        console.log(name,email,password,degree,about,contact_info,address,role,license_number,imageFile)
 
         if(!name || !email  || !password || !degree || !about || !contact_info || !address || !role || !license_number){
             return res.json({success:false,message:"Missing details"})
@@ -20,6 +20,10 @@ const addDoctor=async (req,res)=>{
 
         if(!validator.isEmail(email)){
             return res.json({success:false,message:"Enter valid email"})
+        }
+
+        if (role === "Doctor" && !speciality) {
+            return res.json({ success: false, message: "Specialty is required for doctors" });
         }
 
         if(password.length<6){
@@ -32,8 +36,6 @@ const addDoctor=async (req,res)=>{
         const imageUpload=await cloudinary.uploader.upload(imageFile.path,{resource_type:"image"})
         const imageUrl=imageUpload.secure_url
 
-        // Structure available_slots from request (expected as an array of objects)
-        const parsedAvailableSlots = available_slots ? JSON.parse(available_slots) : [];
 
         const doctorData={
             name,
@@ -44,11 +46,14 @@ const addDoctor=async (req,res)=>{
             about,
             contact_info,
             address,
-            available_slots: parsedAvailableSlots,
-            appointments: [],
-            fees,
             role,
             license_number
+        }
+
+        // Conditionally add specialty if role is "Doctor"
+        if (role === "Doctor") {
+            doctorData.speciality = speciality;
+            doctorData.speciality=fees;
         }
 
         const newDoctor=new doctorsModel(doctorData)
@@ -58,7 +63,7 @@ const addDoctor=async (req,res)=>{
     }
     catch(error){
         console.log(error);
-        return res.json({successs:false,message:error.message})
+        return res.json({success:false,message:error.message})
     }
 }
 

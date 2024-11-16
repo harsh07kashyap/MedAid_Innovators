@@ -26,7 +26,7 @@ const loginDoctorOrNurse=async(req,res)=>{
     
         // Generate JWT token
         const token = jwt.sign(
-          { id: doctor._id, email: doctor.email }, // Payload
+          { id: doctor._id, email: doctor.email,role:doctor.role }, // Payload
           process.env.JWT_SECRET, // Secret key
         );
     
@@ -60,10 +60,20 @@ const respondAppointment = async (req, res) => {
     const { doctorId, appointmentId } = req.params;
     const { status } = req.body;
 
+    // console.log("Doctor ID:", doctorId);
+    // console.log("Appointment ID:", appointmentId);
+    // console.log("New Status:", status);
+
     // Update appointment status in doctor's record
     const doctor = await doctorsModel.findById(doctorId);
-    const appointment = doctor?.appointments.id(appointmentId);
+    if (!doctor) {
+      console.error("Doctor not found");
+      return res.status(404).json({ message: "Doctor not found." });
+    }
+
+    const appointment = doctor.appointments.id(appointmentId);
     if (!appointment) {
+      console.error("Appointment not found in doctor's record");
       return res.status(404).json({ message: "Appointment not found in doctor's record." });
     }
 
@@ -73,23 +83,100 @@ const respondAppointment = async (req, res) => {
     // Update appointment status in patient's record
     const patient = await patientsModel.findById(appointment.patientId);
     if (!patient) {
+      console.error("Patient not found");
       return res.status(404).json({ message: "Patient not found." });
     }
 
     const patientAppointment = patient.appointments.find(app => app._id.equals(appointmentId));
     if (!patientAppointment) {
+      console.error("Appointment not found in patient's record");
       return res.status(404).json({ message: "Appointment not found in patient's record." });
     }
 
     patientAppointment.status = status;
     await patient.save();
 
+    console.log("Appointment status updated successfully");
     res.status(200).json({ message: `Appointment ${status.toLowerCase()} successfully.` });
   } catch (error) {
+    console.error("Error updating appointment:", error);
     res.status(500).json({ error: error.message });
   }
 };
 
 
+const getDoctorAppointments = async (req, res) => {
+  try {
+    
+    const doctorId = req.user.id; // Assuming `authMiddleware` sets `req.user.id`
 
-export {loginDoctorOrNurse,respondAppointment}
+    // Fetch doctor by ID and populate appointment details with patient name
+    const doctor = await doctorsModel.findById(doctorId).populate({
+      path: 'appointments.patientId',
+      select: 'name',
+    });
+
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+
+    // Structure response with appointment details
+    const appointments = doctor.appointments.map((appointment) => ({
+      doctorId:doctorId,
+      _id: appointment._id,
+      patientId: appointment.patientId,
+      patientName: appointment.patientId?.name || 'Unknown',
+      day: appointment.day,
+      time: appointment.time,
+      status: appointment.status,
+    }));
+
+    res.status(200).json({ appointments });
+  } catch (error) {
+    console.error('Error fetching appointments:', error);
+    res.status(500).json({ error: 'Server error while fetching appointments' });
+  }
+};
+
+
+
+const getDoctorsBySpecialty = async (req, res) => {
+  try {
+      // Fetch all doctors with role "Doctor"
+      const doctors = await doctorsModel.find({ role: "Doctor" });
+
+      // Organize doctors by specialty
+      const doctorsBySpeciality = doctors.reduce((acc, doctor) => {
+          const speciality = doctor.speciality || 'General';
+          if (!acc[speciality]) {
+              acc[speciality] = [];
+          }
+          acc[speciality].push(doctor);
+          return acc;
+      }, {});
+
+      return res.json({ success: true, data: doctorsBySpeciality });
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const patientData=async (req,res)=>{
+  try {
+    const {patientId} = req.params;
+    console.log(patientId);
+    const user = await patientsModel.findById(patientId);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    
+    return res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+export {loginDoctorOrNurse,respondAppointment,getDoctorsBySpecialty,getDoctorAppointments,patientData}

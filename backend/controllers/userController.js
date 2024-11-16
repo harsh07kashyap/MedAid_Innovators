@@ -85,55 +85,58 @@ const userProfile = async (req, res) => {
 
 
 
-const bookAppointment = async (req, res) => {
-  try {
-    const { doctorId } = req.params;
-    const { patientId, date, time } = req.body;
-
-    // Generate a consistent appointment ID
-    const appointmentId = new mongoose.Types.ObjectId();
-
-    // Convert patientId to ObjectId
-    const patientObjectId = new mongoose.Types.ObjectId(patientId);
-    console.log("Patient ID:", patientId);
-
-    // Validate date and time
-    console.log("Date received:", date);
-    console.log("Time received:", time);
-    const appointmentDate = new Date(`${date} ${time}`);
-    if (isNaN(appointmentDate.getTime())) {
-      return res.status(400).json({ error: "Invalid date or time format" });
+  const bookAppointment = async (req, res) => {
+    try {
+      const { doctorId } = req.params;
+      const {  day, time } = req.body;  // Receive 'day' and 'time' as separate fields
+      const patientId = req.user.id;
+  
+      // Generate a unique appointment ID
+      const appointmentId = new mongoose.Types.ObjectId();
+  
+      // Convert patientId to ObjectId
+      // const patientObjectId = new mongoose.Types.ObjectId(patientId);
+  
+      // Find the doctor and validate the availability of the requested slot
+      const doctor = await doctorsModel.findById(doctorId);
+      if (!doctor) return res.status(404).json({ error: "Doctor not found" });
+  
+      // Check if the selected slot is available
+      const isSlotAvailable = doctor.available_slots.some(slot => 
+        slot.day === day && slot.time.includes(time)
+      );
+      if (!isSlotAvailable) {
+        return res.status(400).json({ error: "Selected time slot is unavailable" });
+      }
+  
+      // Add the appointment to the doctor's appointments
+      doctor.appointments.push({
+        _id: appointmentId,
+        patientId: patientId,
+        day,
+        time,
+        status: 'Pending'
+      });
+      await doctor.save();
+  
+      // Find the patient and add the same appointment
+      const patient = await patientsModel.findById(patientId);
+      if (!patient) return res.status(404).json({ error: "Patient not found" });
+      patient.appointments.push({
+        _id: appointmentId,
+        doctorId: doctor._id,
+        day,
+        time,
+        status: 'Pending'
+      });
+      await patient.save();
+  
+      res.status(200).json({ message: "Appointment request sent.", appointmentId });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-
-    // Find doctor and add appointment
-    const doctor = await doctorsModel.findById(doctorId);
-    if (!doctor) return res.status(404).json({ error: "Doctor not found" });
-    doctor.appointments.push({
-      _id: appointmentId,  // Use the generated appointmentId
-      patientId: patientObjectId,
-      date: appointmentDate,
-      time,
-      status: 'Pending'
-    });
-    await doctor.save();
-
-    // Find patient and add the same appointment
-    const patient = await patientsModel.findById(patientId);
-    if (!patient) return res.status(404).json({ error: "Patient not found" });
-    patient.appointments.push({
-      _id: appointmentId,  // Use the same appointmentId
-      doctorId: doctor._id,
-      date: appointmentDate,
-      time,
-      status: 'Pending'
-    });
-    await patient.save();
-
-    res.status(200).json({ message: "Appointment request sent.", appointmentId });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+  };
+  
 
 
 const available_slots=async(req,res)=>{
@@ -147,4 +150,15 @@ const available_slots=async(req,res)=>{
 }
 
 
-export {registerUser,loginUser,userProfile,bookAppointment,available_slots}
+const getDoctorData=async(req,res)=>{
+  try{ 
+    const {doctorId} =req.params;
+    const doctor=await doctorsModel.findById(doctorId);
+    res.status(200).json(doctor)
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export {registerUser,loginUser,userProfile,bookAppointment,available_slots,getDoctorData}

@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./LoginPageBody.module.css"
-const localhosts="http://localhost:4000"
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import {UserContext} from "../../Context/ContextProvider"
 
 const LoginPageBody = () => {
    const [credentials, setCredentials] = useState({ email: "", password: "" });
    let navigate = useNavigate();
+   const {backendUrl}=useContext(UserContext);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -14,7 +15,7 @@ const LoginPageBody = () => {
         email: credentials.email,
         password: credentials.password,
       };
-      const response = await fetch(`${localhosts}/api/user/login`, {
+      const response = await fetch(`${backendUrl}/api/user/login`, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "Content-Type": "application/json",
