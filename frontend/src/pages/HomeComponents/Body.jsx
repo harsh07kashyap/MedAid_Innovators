@@ -104,9 +104,11 @@ const Body = () => {
             {doctors.map(doctor => (
               <div key={doctor._id} className={styles.doctor_card} onClick={() => handleClick(doctor._id)}>
                 <img src={doctor.image} alt={doctor.name} className={styles.doctor_image} />
+                <div className={styles.action}>
+                <p className={styles.availability_status}>Available</p>
                 <h3 className={styles.doctor_name}>{doctor.name}</h3>
                 <p className={styles.doctor_specialty}>{doctor.speciality}</p>
-                <p className={styles.availability_status}>Available</p>
+                </div>
               </div>
             ))}
           </div>

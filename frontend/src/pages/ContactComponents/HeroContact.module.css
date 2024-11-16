@@ -16,8 +16,9 @@
 
 .image {
   height: auto;
-  width: 100%;
+  width: 95%;
   max-width: 380px;
+  margin-right: 25px;
 }
 
 .para {
@@ -37,6 +38,13 @@
 
   .para {
     font-size: 0.875rem; 
+  }
+
+  .image{
+    height: auto;
+    width: 70%;
+    max-width: 350px;
+    margin: 15px 15px 15px 50px;
   }
 }
 
