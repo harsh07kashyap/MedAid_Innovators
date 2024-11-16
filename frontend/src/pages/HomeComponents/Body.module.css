@@ -250,7 +250,7 @@
 /* Media Queries */
 @media (max-width: 768px) {
   .specialityContainer {
-    margin-left: 20px; 
+    margin-left: 30px; 
   }
 
   .specialty_title {
@@ -267,8 +267,8 @@
 }
 
 @media (max-width: 480px) {
-  .specialityContainer {
-    margin-left: 10px; 
+  .specialty_section {
+   margin-left: 30px;
   }
   
   .specialty_title {

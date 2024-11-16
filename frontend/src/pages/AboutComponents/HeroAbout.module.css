@@ -18,7 +18,7 @@
   height: auto;
   width: 90%; 
   max-width: 380px;
-  margin-right: 20px;
+  margin: 15px 20px 15px 0px;
 }
 
 .para {
@@ -85,8 +85,9 @@
   }
 
   .bottom {
-    font-size: 1.125rem;
     margin-left: 10px; 
+    font-size: 1.375rem;
+     font-weight: 500;
   }
 
   .topic,
@@ -102,10 +103,11 @@
     height: auto;
     width: 100%; 
     max-width: 280px;
+    margin-bottom: 15px;
   }
 
   .vision{
-    margin-left: 15px;
+    margin: 15px 0px 10px 15px;
   }
 }
 
@@ -124,7 +126,7 @@
 
   .bottom {
     font-size: 1rem;
-    margin-left: 15px; 
+    margin-left: 25px; 
   }
 
   .topic,
