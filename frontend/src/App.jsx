@@ -17,11 +17,12 @@ import Gastroenterologist from "./pages/AllDoctorComponents/Gastroenterologist";
 import PatientAppointmentPage from "./pages/PatientAppointmentPage"
 
 
+
 function App() {
 
   return (
     <>
-        {/* <Home></Home> */}
+        {/*  <Home></Home> */}
         {/* <About></About> */}
         {/* <Contact></Contact> */}
         {/* <AllDoctor></AllDoctor> */}

@@ -80,6 +80,7 @@
 
   .para {
     font-size: 0.875rem;
+    margin: 5px 15px 10px 25px; 
   }
 
   .bottom {
@@ -94,6 +95,12 @@
 
   .topic1 {
     font-size: 0.875rem;
+  }
+
+  .image{
+    height: auto;
+    width: 100%; 
+    max-width: 280px;
   }
 }
 
@@ -112,7 +119,7 @@
 
   .bottom {
     font-size: 1rem;
-    margin-left: 5px; 
+    margin-left: 15px; 
   }
 
   .topic,
