@@ -73,11 +73,11 @@ const PatientPageForAppointment = () => {
                   <div className={styles.doctor_info}>
                       <h2>{doctorData.name} <span className={styles.verified_badge}>✔️</span></h2>
                       <p className={styles.degree}>{doctorData.degree} - {doctorData.speciality} <span className={styles.experience}>{doctorData.experience || '4 Years'}</span></p>
-                      <p className={styles.about}><strong>About:</strong> {doctorData.about}</p>
-                      <p className={styles.contact_info}><strong>Contact:</strong> {doctorData.contact_info}</p>
-                      <p className={styles.address}><strong>Address:</strong> {doctorData.address}</p>
-                      <p className={styles.appointment_fee}><strong>Appointment fee:</strong> Rs {doctorData.fees}</p>
-                      <p className={styles.license}><strong>License Number:</strong> {doctorData.license_number}</p>
+                      <p className={styles.about}><strong >About:</strong> <span className={styles.whole}>{doctorData.about} </span> </p>
+                      <p className={styles.about}><strong>Contact:</strong> <span className={styles.whole}> {doctorData.contact_info}</span></p>
+                      <p className={styles.about}><strong>Address:</strong> <span className={styles.whole}> {doctorData.address} </span></p>
+                      <p className={styles.about}><strong>Appointment fee:</strong> <span className={styles.whole}> Rs {doctorData.fees} </span></p>
+                      <p className={styles.about}><strong> License Number:</strong> <span className={styles.whole}>{doctorData.license_number} </span></p>
                   </div>
               </>
           ) : (

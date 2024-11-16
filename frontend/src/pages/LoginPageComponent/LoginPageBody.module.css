@@ -71,8 +71,7 @@
 @media (max-width: 480px) {
   .topform {
     flex-direction: column;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin: 30px 40px 50px 40px;
   }
 
   .formClass {

@@ -16,8 +16,9 @@
 
 .image {
   height: auto;
-  width: 100%; 
+  width: 90%; 
   max-width: 380px;
+  margin-right: 20px;
 }
 
 .para {
@@ -101,6 +102,10 @@
     height: auto;
     width: 100%; 
     max-width: 280px;
+  }
+
+  .vision{
+    margin-left: 15px;
   }
 }
 
