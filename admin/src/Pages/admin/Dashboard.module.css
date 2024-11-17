@@ -49,67 +49,97 @@
     font-size: 14px;
     color: #888;
   }
+
+
   
   .latestBookings {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sectionTitle {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  
-  .bookingList {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .bookingItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .doctorImage {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 15px;
-  }
-  
-  .bookingInfo {
-    flex-grow: 1;
-  }
-  
-  .doctorName {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .bookingDate {
-    font-size: 14px;
-    color: #888;
-  }
-  
-  .cancelButton {
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: #ff6b6b;
-    cursor: pointer;
-  }
-  
-  .cancelled {
-    color: #ff6b6b;
-    font-style: italic;
-  }
-  
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
 
-  .myClass{
-    font-weight: 700;
-    font-size: 25px;
-    color: rgba(36, 36, 201, 0.897);
- }
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.bookingList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bookingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.doctorImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bookingInfo {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.doctorName {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.bookingDate {
+  font-size: 14px;
+  color: #555;
+}
+
+.statusIndicator {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statusIcon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.accepted {
+  color: #4caf50; /* Green for accepted */
+}
+
+.rejected {
+  color: #f44336; /* Red for rejected */
+}
+
+.pendingStatus {
+  font-size: 16px;
+  color: #555; /* Neutral gray for pending */
+}
+
+.loading {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: #555;
+}
+
+.noData {
+  font-size: 16px;
+  color: #777;
+  text-align: center;
+  margin-top: 20px;
+}
