@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken"
 import validator from "validator"
 import {v2 as cloudinary} from "cloudinary"
 import doctorsModel from "../models/Doctors_Nurses.js";
+import patientsModel from "../models/Patients.js"
 import bcrypt from "bcrypt"
 import path from "path"
 
@@ -83,4 +84,83 @@ const loginAdmin=async(req,res)=>{
     }
 }
 
-export {addDoctor,loginAdmin}
+//api function for getting admin dashboard data
+const getDashboardData = async (req, res) => {
+    try {
+      
+      const [doctorsCount, patientsCount, appointmentsCount] = await Promise.all([
+        doctorsModel.countDocuments(),
+        patientsModel.countDocuments(), 
+        doctorsModel.aggregate([
+          {
+            $unwind: { path: "$appointments", preserveNullAndEmptyArrays: true },
+          },
+          {
+            $group: {
+              _id: null,
+              totalAppointments: { $sum: 1 }, // Count all appointments
+            },
+          },
+        ]),
+      ]);
+  
+      const totalAppointments = appointmentsCount[0]?.totalAppointments || 0;
+  
+      res.status(200).json({
+        doctorsCount,
+        patientsCount,
+        appointmentsCount: totalAppointments,
+      });
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      res.status(500).json({ error: 'Failed to fetch dashboard data. Please try again.' });
+    }
+  };
+  
+
+  //api function to get lists of all appointments
+  const getAllAppointments = async (req, res) => {
+    try {
+      const appointments = await doctorsModel.aggregate([
+        {
+          $unwind: "$appointments", // Unwind the appointments array to have one document per appointment
+        },
+        {
+          $lookup: {
+            from: "patients", // Reference the patients collection
+            localField: "appointments.patientId", // Field in the doctors collection
+            foreignField: "_id", // Field in the patients collection
+            as: "patientDetails", // Output array for patient details
+          },
+        },
+        {
+          $unwind: "$patientDetails", // Unwind the patientDetails array
+        },
+        {
+          $project: {
+            doctorName: "$name", // Doctor's name
+            patientName: "$patientDetails.name", // Patient's name
+            day: "$appointments.day", // Appointment day
+            time: "$appointments.time", // Appointment time
+            status: "$appointments.status", // Appointment status
+          },
+        },
+        {
+          $sort: { day: 1, time: 1 }, // Sort appointments by day and time
+        },
+      ]);
+  
+      if (appointments.length === 0) {
+        return res.status(404).json({ message: "No appointments found." });
+      }
+  
+      res.status(200).json({ appointments });
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+      res.status(500).json({ error: "Failed to fetch appointments." });
+    }
+  };
+  
+
+
+export {addDoctor,loginAdmin,getDashboardData,getAllAppointments}
