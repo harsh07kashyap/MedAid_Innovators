@@ -47,6 +47,7 @@ const Dashboard = () => {
   }, []);
 
   return (
+    <center className={styles.upper}>
     <div className={styles.mainContent}>
       <div className={styles.dashboardHeader}>
         <h1 className={styles.dashboardTitle}>Dashboard Panel</h1>
@@ -101,6 +102,7 @@ const Dashboard = () => {
       )}
     </div>
     </div>
+    </center>
   )
 }
 

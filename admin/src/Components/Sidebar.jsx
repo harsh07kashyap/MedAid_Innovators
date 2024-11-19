@@ -3,6 +3,7 @@ import { useContext,useEffect } from 'react'
 import { AdminContext } from '../Context/AdminContext'
 import {NavLink} from "react-router-dom"
 import { DoctorContext } from '../Context/DoctorContext'
+import styles from "./Sidebar.module.css"
 
 const Sidebar = () => {
   const {aToken}=useContext(AdminContext)
@@ -19,24 +20,24 @@ const Sidebar = () => {
   // }, [dToken]);
 
   return (
-    <div className='min-h-screen bg-white border-r'>
+    <div className={`min-h-screen bg-white border-r`}>
       {
         aToken && <ul className='text-[#515151] mt-5'>
           <NavLink className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary': ''}`} to={"/dashboard"}>
             <img src="" alt=""/>
-            <p>Dashboard</p>
+            <p className={styles.para}>Dashboard</p>
           </NavLink>
           <NavLink className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary': ''}`} to={"/add-doctor"}>
             <img src="" alt=""/>
-            <p>Add Doctors</p>
+            <p className={styles.para}>Add Doctors</p>
           </NavLink>
           <NavLink className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary': ''}`} to={"/add-nurse"}>
             <img src="" alt=""/>
-            <p>Add Nurses</p>
+            <p className={styles.para}>Add Nurses</p>
           </NavLink>
           <NavLink className={({isActive})=>`flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary': ''}`} to={"/doctor-list"}>
             <img src="" alt=""/>
-            <p>Doctors List</p>
+            <p className={styles.para}>Doctors List</p>
           </NavLink>
         </ul>
       }
@@ -49,13 +50,13 @@ const Sidebar = () => {
                 className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} 
                 to={"/manage-appointments"}>
                 <img src="" alt=""/>
-                <p>Manage Appointments</p>
+                <p className={styles.para}>Manage Appointments</p>
               </NavLink>
               <NavLink 
                 className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} 
                 to={"/doctor-list"}>
                 <img src="" alt=""/>
-                <p>Doctors List</p>
+                <p className={styles.para}>Doctors List</p>
               </NavLink>
             </>
           )}
@@ -67,19 +68,19 @@ const Sidebar = () => {
                 className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} 
                 to={"/allPatients"}>
                 <img src="" alt=""/>
-                <p>Nurse Dashboard</p>
+                <p className={styles.para}>Nurse Dashboard</p>
               </NavLink>
               <NavLink 
                 className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} 
                 to={"/doctor-list"}>
                 <img src="" alt=""/>
-                <p>Doctors List</p>
+                <p className={styles.para}>Doctors List</p>
               </NavLink>
               <NavLink 
                 className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#F2F3FF] border-r-4 border-primary' : ''}`} 
                 to={"/uploadLabResults"}>
                 <img src="" alt=""/>
-                <p>Laboratory Results</p>
+                <p className={styles.para}>Laboratory Results</p>
               </NavLink>
             </>
           )}

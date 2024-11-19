@@ -9,7 +9,7 @@
 }
 
 .base {
-  border-top: 0.2px solid rgb(165, 159, 159);
+  border-top: 0.2px solid rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   font-weight: 450;

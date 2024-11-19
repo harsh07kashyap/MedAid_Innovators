@@ -1,4 +1,15 @@
-.profile_container {
+.upper{
+  margin-top: 50px;
+  margin-left: 150px;
+}
+
+.upper1{
+  font-size: 28px;
+  margin-bottom: 22px;
+  color: #357abd;
+}
+
+   .profile_container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -7,36 +18,47 @@
   .profile_header {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    margin-bottom: 40px;
   }
   
   .profile_image {
-    width: 100px;
-    height: 100px;
+    width: 81%; 
+    max-width: 80px; 
+    height: auto; 
     border-radius: 50%;
     background-color: #e0e0e0;
   }
   
   h2 {
-    font-size: 24px;
+    font-size: 1.875rem; 
     margin: 0;
   }
   
   .profile_section {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   
   .profile_section h3 {
-    font-size: 18px;
-    color: #333;
+    font-size: 1.25rem; 
+    font-weight: 600;
+    color: #474af3;
+    border-bottom: 0.01px solid rgb(182, 180, 180);
     margin-bottom: 10px;
     text-transform: uppercase;
   }
   
   .profile_section p {
-    font-size: 16px;
-    margin: 5px 0;
+    font-size: 1rem; 
+    margin: 5px 0px 5px 25px;
+  }
+  
+  .profile_section span {
+    font-size: 0.875rem; 
+    font-weight: 500;
+    color: rgb(63, 62, 62);
+    margin-left: 10px;
   }
   
   .edit_button {
@@ -52,3 +74,41 @@
     background-color: #357abd;
   }
   
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .profile_header {
+        gap: 10px; 
+    }
+  
+    h2 {
+        font-size: 1.5rem; 
+    }
+  
+    .profile_section h3 {
+        font-size: 1.125rem; 
+    }
+  
+    .profile_section p,
+    .profile_section span {
+        font-size: 0.875rem; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .profile_header {
+        gap: 5px; 
+    }
+  
+    h2 {
+        font-size: 1.25rem; 
+    }
+  
+    .profile_section h3 {
+        font-size: 1rem; 
+    }
+  
+    .profile_section p,
+    .profile_section span {
+        font-size: 0.75rem; 
+    }
+  }
