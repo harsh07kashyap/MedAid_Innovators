@@ -13,8 +13,9 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+   }
 
-.upper1{
+
   .profile_header {
     display: flex;
     align-items: center;
@@ -62,13 +63,12 @@
   }
   
   .edit_button {
-.profile_section h3 {
-  font-size: 1.25rem; 
-  font-weight: 600;
-  color: #474af3;
-  border-bottom: 0.01px solid rgb(182, 180, 180);
-  margin-bottom: 10px;
-  text-transform: uppercase;
+background-color: #4a90e2;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
   .edit_button:hover {
     background-color: #357abd;
@@ -112,3 +112,27 @@
         font-size: 0.75rem; 
     }
   }
+
+.labReportsButton {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.labReportsButton:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Reverse the gradient */
+  transform: translateY(-2px); /* Lift the button slightly */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.labReportsButton:active {
+  transform: translateY(0); /* Reset button to original position */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
