@@ -119,6 +119,7 @@ const Header = () => {
               </Link>
             </li>
           </ul>
+         
 
           <div>
             {!localStorage.getItem("token") ? (
@@ -154,6 +155,10 @@ const Header = () => {
                 )}
               </div>
             )}
+          </div>
+          </header>
+          </div>
+          </>
   );
 };
 
