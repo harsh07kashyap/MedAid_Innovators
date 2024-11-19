@@ -47,29 +47,29 @@ const PatientProfile = () => {
             src={profile.image || 'default-profile.png'}
             alt="Profile"
             className={styles.profile_image}
-          />
-          <h2><strong>{profile.name}</strong></h2>
-        </div>
   
         <div className={styles.profile_section}>
           <h3>Contact Information</h3>
-          <p><strong>Email id:</strong> {profile.email}</p>
-          <p><strong>Phone:</strong> {profile.contact_info || 'Not Provided'}</p>
-          <p><strong>Address:</strong> {profile.address || 'Not Provided'}</p>
+          <p><strong>Email id:</strong> <span>{profile.email}</span></p>
+          <p><strong>Phone:</strong> <span> {profile.contact_info || 'Not Provided'}</span></p>
+          <p><strong>Address:</strong> <span> {profile.address || 'Not Provided'}</span></p>
+        </div>
+  
+        <div className={styles.profile_section}>
+          <h3>Basic Information</h3>
+          <p><strong>Gender:</strong> <span>{profile.gender || 'Not Selected'}</span></p>
+          <p><strong>Birthday:</strong> <span>{profile.dob || 'Not Selected'}</span></p>
         </div>
 
         <div className={styles.profile_section}>
-          <h3>Lab Results</h3>
-          <button
-              className={styles.labReportsButton}
-              onClick={() => setShowLabReports(true)}
-            >
-              View Lab Reports
-          </button>
-          {showLabReports && (
-            <LabReportsDialog
-              patientId={patientId}
-              onClose={() => setShowLabReports(false)}
+          <h3>Medical Information</h3>
+          <p><strong>Weight:</strong><span>{profile.weight || 'Not Selected'}</span></p>
+          <p><strong>Health problem:</strong> <span> {profile.health_problem || 'Not Selected'}</span></p>
+          <p><strong>Prescribed medicine:</strong> <span>{profile.prescribed_medicine || 'Not Selected'}</span> </p>
+          <p><strong>Health update:</strong><span>{profile.health_update || 'Not Selected'}</span> </p>
+        </div>
+  
+        
             />
       )}</div>
   

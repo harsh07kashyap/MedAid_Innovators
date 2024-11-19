@@ -3,6 +3,7 @@ import axios from 'axios';
 import { DoctorContext } from '../../Context/DoctorContext';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import styles from "./PatientProfile.module.css"
 
 const ManageAppointments = () => {
   const { dToken, backendUrl } = useContext(DoctorContext);
@@ -43,8 +44,8 @@ const ManageAppointments = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold mb-4">Manage Appointments</h2>
+    <div className={styles.upper}>
+      <h2 className={`${styles.upper1} text-xl font-semibold mb-4`}>Manage Appointments</h2>
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
           <tr>
