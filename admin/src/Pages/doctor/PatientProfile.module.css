@@ -1,3 +1,14 @@
+.upper{
+  margin-top: 50px;
+  margin-left: 150px;
+}
+
+.upper1{
+  font-size: 28px;
+  margin-bottom: 22px;
+  color: #357abd;
+}
+
 .profile_container {
   max-width: 800px;
   margin: 0 auto;
