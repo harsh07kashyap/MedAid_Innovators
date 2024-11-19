@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styles from './AddDoctor.module.css';
+import styles from "./AddDoctor.module.css"
 import { AdminContext } from "../../Context/AdminContext";
 import axios from "axios"
 
@@ -55,7 +55,7 @@ const AddDoctor = () => {
 
 
   return (
-    <div className={styles.mainContent}>
+    <div className={styles.mainContainer}>
       <h2 className={styles.formTitle}>Add Nurse</h2>
       <form className={styles.form} onSubmit={handleSubmit} encType="multipart/form-data">
         <div className={styles.formGroup}>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AdminContext } from '../Context/AdminContext'
 import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
-import styles from "../Pages/admin/Dashboard.module.css"
+import styles from "./Navbar.module.css"
 import { DoctorContext } from '../Context/DoctorContext'
 
 const Navbar = () => {
@@ -27,20 +27,20 @@ const Navbar = () => {
 
 
   return (
-    <div className='flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white'>
-      <div className='flex items-center gap-2 text-xs'>
+    <div className={`${styles.header} flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white`}>
+      <div className={`${styles.header2} flex items-center gap-2 text-xs`}>
       <a className={`${styles.myClass} navbar-brand`} href="#">
                 <i className="bi bi-flower1"></i>
                 MedAid
       </a>
-      <p className='border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600'>
+      <p className={`${styles.header3} border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600`}>
       {/* {aToken ? 'Admin': 'Doctor'} */}
       {aToken && "Admin"}
       {dToken && (role==="Doctor" &&("Doctor"))}
       {dToken && (role==="Nurse" &&("Nurse"))}
       </p>
       </div>
-      <button className='bg-primary text-white text-sm px-10 py-2 round-full' onClick={logout} >Logout</button>
+      <button className={`${styles.logout} bg-primary text-white text-sm px-10 py-2 round-full`} onClick={logout} >Logout</button>
     </div>
   )
 }

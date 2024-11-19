@@ -1,0 +1,27 @@
+.upper{
+  width: 80%;
+  margin-top: 40px;
+}
+
+.lower_container {
+  background-color: rgb(95 111 255);
+  border-radius: 10px;
+  margin: 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lower_container1 {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+
+.image {
+  margin-top: 50px;
+  width: 100%; 
+  max-width: 350px; 
+  height: auto;
+}

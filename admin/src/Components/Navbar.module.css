@@ -1,0 +1,23 @@
+.myClass{
+  font-size: 29px;
+}
+
+.header{
+  height: 70px;
+  font-weight: 500;
+  color: rgba(18, 40, 243, 0.849)
+}
+
+.header2{
+  gap: 30px;
+}
+
+.header3{
+  height: 25px;
+  width: 80px;
+}
+
+.logout{
+  border: 1px;
+  border-radius: 10px;
+}

@@ -59,7 +59,8 @@ const AddDoctor = () => {
 
 
   return (
-    <div className={styles.mainContent}>
+    <>
+     <div className={styles.mainContainer}>
       <h2 className={styles.formTitle}>Add Doctor</h2>
       <form className={styles.form} onSubmit={handleSubmit} encType="multipart/form-data">
         <div className={styles.formGroup}>
@@ -229,6 +230,8 @@ const AddDoctor = () => {
         <button type="submit" onSubmit={handleSubmit} className={styles.submitButton}>Add Doctor</button>
       </form>
     </div>
+   
+    </>
   );
 };
 
