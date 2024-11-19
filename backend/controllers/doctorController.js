@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
 import patientsModel from "../models/Patients.js";
 import doctorsModel from "../models/Doctors_Nurses.js";
+import labResultsModel from "../models/LabResults.js"
 import bcrypt from "bcrypt"
 import path from "path"
 
@@ -108,9 +109,7 @@ const respondAppointment = async (req, res) => {
 const getDoctorAppointments = async (req, res) => {
   try {
     
-    const doctorId = req.user.id; // Assuming `authMiddleware` sets `req.user.id`
-
-    // Fetch doctor by ID and populate appointment details with patient name
+    const doctorId = req.user.id;
     const doctor = await doctorsModel.findById(doctorId).populate({
       path: 'appointments.patientId',
       select: 'name',
@@ -120,7 +119,6 @@ const getDoctorAppointments = async (req, res) => {
       return res.status(404).json({ message: 'Doctor not found' });
     }
 
-    // Structure response with appointment details
     const appointments = doctor.appointments.map((appointment) => ({
       doctorId:doctorId,
       _id: appointment._id,
@@ -179,4 +177,42 @@ const patientData=async (req,res)=>{
   }
 }
 
-export {loginDoctorOrNurse,respondAppointment,getDoctorsBySpecialty,getDoctorAppointments,patientData}
+
+const getPatientLabReports = async (req, res) => {
+  try {
+    const { patientId } = req.params;
+
+    if (!patientId) {
+      return res.status(400).json({ error: "Patient ID is required." });
+    }
+
+    // Fetch all lab reports for the given patient ID
+    const labReports = await labResultsModel
+      .find({ patient_id: patientId })
+      .populate("nurse_id", "name email") // Populate nurse details
+      .sort({ date: -1 }); // Sort by most recent first
+
+    if (!labReports || labReports.length === 0) {
+      return res.status(404).json({ message: "No lab reports found for this patient." });
+    }
+
+    res.status(200).json({
+      message: "Lab reports fetched successfully.",
+      labReports: labReports.map(report => ({
+        test_name: report.test_name,
+        result: report.result,
+        image_url: report.image_url,
+        date: report.date,
+        additional_notes: report.additional_notes,
+        technician_name: report.technician_name,
+        nurse_name: report.nurse_id?.name || "Unknown", // Nurse name
+        nurse_email: report.nurse_id?.email || "Unknown" // Nurse email
+      }))
+    });
+  } catch (error) {
+    console.error("Error fetching lab reports:", error);
+    res.status(500).json({ error: "An internal server error occurred." });
+  }
+};
+
+export {loginDoctorOrNurse,respondAppointment,getDoctorsBySpecialty,getDoctorAppointments,patientData,getPatientLabReports}

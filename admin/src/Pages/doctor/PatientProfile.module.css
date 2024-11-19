@@ -13,8 +13,8 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
+
+.upper1{
   .profile_header {
     display: flex;
     align-items: center;
@@ -62,14 +62,14 @@
   }
   
   .edit_button {
-    background-color: #4a90e2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+.profile_section h3 {
+  font-size: 1.25rem; 
+  font-weight: 600;
+  color: #474af3;
+  border-bottom: 0.01px solid rgb(182, 180, 180);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
   .edit_button:hover {
     background-color: #357abd;
   }

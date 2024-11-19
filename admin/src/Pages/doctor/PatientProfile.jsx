@@ -4,11 +4,14 @@ import React, { useState,useEffect,useContext } from "react";
 import { useNavigate,useParams } from "react-router-dom";
 import axios from 'axios';
 import { DoctorContext } from '../../Context/DoctorContext';
+import LabReportsDialog from "./LabReportsDialog.jsx";
 
 const PatientProfile = () => {
     const [profile, setProfile] = useState(null);
     const { dToken, backendUrl } = useContext(DoctorContext);
     const {patientId} =useParams();
+    const [showLabReports, setShowLabReports] = useState(false);
+  const [patientData, setPatientData] = useState(null);
 
     useEffect(() => {
       const fetchProfile = async () => {
@@ -29,8 +32,8 @@ const PatientProfile = () => {
             console.error("Error fetching profile data:", error);
           }
       };
-  
       fetchProfile();
+      
     }, []);
   
     if (!profile) {
@@ -44,9 +47,6 @@ const PatientProfile = () => {
             src={profile.image || 'default-profile.png'}
             alt="Profile"
             className={styles.profile_image}
-          />
-          <h2><strong>{profile.name}</strong></h2>
-        </div>
   
         <div className={styles.profile_section}>
           <h3>Contact Information</h3>
@@ -67,6 +67,24 @@ const PatientProfile = () => {
           <p><strong>Health problem:</strong> <span> {profile.health_problem || 'Not Selected'}</span></p>
           <p><strong>Prescribed medicine:</strong> <span>{profile.prescribed_medicine || 'Not Selected'}</span> </p>
           <p><strong>Health update:</strong><span>{profile.health_update || 'Not Selected'}</span> </p>
+        </div>
+  
+        
+            />
+      )}</div>
+  
+        <div className={styles.profile_section}>
+          <h3>Basic Information</h3>
+          <p><strong>Gender:</strong> {profile.gender || 'Not Selected'}</p>
+          <p><strong>Birthday:</strong> {profile.dob || 'Not Selected'}</p>
+        </div>
+
+        <div className={styles.profile_section}>
+          <h3>Medical Information</h3>
+          <p><strong>Weight:</strong> {profile.weight || 'Not Selected'}</p>
+          <p><strong>Health problem:</strong> {profile.health_problem || 'Not Selected'}</p>
+          <p><strong>Prescribed medicine:</strong> {profile.prescribed_medicine || 'Not Selected'}</p>
+          <p><strong>Health update:</strong> {profile.health_update || 'Not Selected'}</p>
         </div>
   
         

@@ -161,4 +161,41 @@ const getDoctorData=async(req,res)=>{
   }
 }
 
-export {registerUser,loginUser,userProfile,bookAppointment,available_slots,getDoctorData}
+
+// Route: Get all appointments for a specific patient
+const getAllAppointments= async (req, res) => {
+  const patientId= req.user.id
+
+  try {
+    // Find the patient and populate doctor details for each appointment
+    const patient = await patientsModel.findById(patientId).populate({
+      path: "appointments.doctorId",
+      select: "name speciality contact_info" // Fetch doctor-specific fields
+    });
+
+    if (!patient) {
+      return res.status(404).json({ message: "Patient not found." });
+    }
+
+    // Format the response to include relevant appointment details
+    const formattedAppointments = patient.appointments.map((appointment) => ({
+      doctorName: appointment.doctorId?.name || "Unknown Doctor",
+      speciality: appointment.doctorId?.speciality || "Not Provided",
+      contactInfo: appointment.doctorId?.contact_info || "Not Provided",
+      date: appointment.day,
+      time: appointment.time,
+      status: appointment.status
+    }));
+
+    res.status(200).json({
+      patientName: patient.name,
+      appointments: formattedAppointments
+    });
+  } catch (error) {
+    console.error("Error fetching patient appointments:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+
+export {registerUser,loginUser,userProfile,bookAppointment,available_slots,getDoctorData,getAllAppointments}

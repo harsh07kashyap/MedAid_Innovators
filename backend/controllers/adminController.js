@@ -123,30 +123,30 @@ const getDashboardData = async (req, res) => {
     try {
       const appointments = await doctorsModel.aggregate([
         {
-          $unwind: "$appointments", // Unwind the appointments array to have one document per appointment
+          $unwind: "$appointments", 
         },
         {
           $lookup: {
-            from: "patients", // Reference the patients collection
-            localField: "appointments.patientId", // Field in the doctors collection
-            foreignField: "_id", // Field in the patients collection
-            as: "patientDetails", // Output array for patient details
+            from: "patients", 
+            localField: "appointments.patientId", 
+            foreignField: "_id", 
+            as: "patientDetails", 
           },
         },
         {
-          $unwind: "$patientDetails", // Unwind the patientDetails array
+          $unwind: "$patientDetails", 
         },
         {
           $project: {
-            doctorName: "$name", // Doctor's name
-            patientName: "$patientDetails.name", // Patient's name
-            day: "$appointments.day", // Appointment day
-            time: "$appointments.time", // Appointment time
-            status: "$appointments.status", // Appointment status
+            doctorName: "$name", 
+            patientName: "$patientDetails.name", 
+            day: "$appointments.day",
+            time: "$appointments.time", 
+            status: "$appointments.status", 
           },
         },
         {
-          $sort: { day: 1, time: 1 }, // Sort appointments by day and time
+          $sort: { day: 1, time: 1 }, 
         },
       ]);
   

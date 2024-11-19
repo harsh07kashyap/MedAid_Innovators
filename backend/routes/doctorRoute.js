@@ -1,7 +1,7 @@
 import express from "express";
 import roleMiddleware from "../middlewares/roleMiddleware.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
-import { getDoctorsBySpecialty, loginDoctorOrNurse,respondAppointment,getDoctorAppointments,patientData } from "../controllers/doctorController.js";
+import { getDoctorsBySpecialty, loginDoctorOrNurse,respondAppointment,getDoctorAppointments,patientData,getPatientLabReports } from "../controllers/doctorController.js";
 
 const doctorRouter = express.Router();
 
@@ -16,6 +16,8 @@ doctorRouter.get("/allDoctors",getDoctorsBySpecialty)
 
 doctorRouter.get("/appointments",authMiddleware, roleMiddleware("Doctor"),getDoctorAppointments)
 
- doctorRouter.get("/patientdata/:patientId",authMiddleware, roleMiddleware("Doctor","Nurse"),patientData)
+doctorRouter.get("/patientdata/:patientId",authMiddleware, roleMiddleware("Doctor","Nurse"),patientData)
+
+doctorRouter.get("/lab-reports/:patientId",authMiddleware, roleMiddleware("Doctor"),getPatientLabReports)
 
 export default doctorRouter
