@@ -4,11 +4,14 @@ import React, { useState,useEffect,useContext } from "react";
 import { useNavigate,useParams } from "react-router-dom";
 import axios from 'axios';
 import { DoctorContext } from '../../Context/DoctorContext';
+import LabReportsDialog from "./LabReportsDialog.jsx";
 
 const PatientProfile = () => {
     const [profile, setProfile] = useState(null);
     const { dToken, backendUrl } = useContext(DoctorContext);
     const {patientId} =useParams();
+    const [showLabReports, setShowLabReports] = useState(false);
+  const [patientData, setPatientData] = useState(null);
 
     useEffect(() => {
       const fetchProfile = async () => {
@@ -29,8 +32,8 @@ const PatientProfile = () => {
             console.error("Error fetching profile data:", error);
           }
       };
-  
       fetchProfile();
+      
     }, []);
   
     if (!profile) {
@@ -54,6 +57,21 @@ const PatientProfile = () => {
           <p><strong>Phone:</strong> {profile.contact_info || 'Not Provided'}</p>
           <p><strong>Address:</strong> {profile.address || 'Not Provided'}</p>
         </div>
+
+        <div className={styles.profile_section}>
+          <h3>Lab Results</h3>
+          <button
+              className={styles.labReportsButton}
+              onClick={() => setShowLabReports(true)}
+            >
+              View Lab Reports
+          </button>
+          {showLabReports && (
+            <LabReportsDialog
+              patientId={patientId}
+              onClose={() => setShowLabReports(false)}
+            />
+      )}</div>
   
         <div className={styles.profile_section}>
           <h3>Basic Information</h3>

@@ -15,7 +15,7 @@ import Pediatricians from "./pages/AllDoctorComponents/Pediatricians";
 import Neurologist from "./pages/AllDoctorComponents/Neurologist";
 import Gastroenterologist from "./pages/AllDoctorComponents/Gastroenterologist";
 import PatientAppointmentPage from "./pages/PatientAppointmentPage"
-
+import MyAppointments from "./pages/MyAppointmentPage";
 
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
             <Route path="/Pediatricians" exact element={<Pediatricians/>} />
             <Route path="/Neurologist" exact element={<Neurologist/>} />
             <Route path="/Gastroenterologist" exact element={<Gastroenterologist/>}/>
+            <Route path="/myAppointments" exact element={<MyAppointments/>}/>
           </Routes>
         
     </>

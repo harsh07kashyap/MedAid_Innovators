@@ -1,5 +1,5 @@
 import express from "express"
-import { registerUser,loginUser,userProfile,bookAppointment,available_slots,getDoctorData} from "../controllers/userController.js"
+import { registerUser,loginUser,userProfile,bookAppointment,available_slots,getDoctorData,getAllAppointments} from "../controllers/userController.js"
 import roleMiddleware from "../middlewares/roleMiddleware.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 
@@ -21,5 +21,8 @@ userRouter.post('/appointments/book/:doctorId',authMiddleware,roleMiddleware("Pa
 userRouter.get('/doctors/:doctorId/available-slots',authMiddleware,roleMiddleware("Patient"),available_slots)
 
 userRouter.get('/doctordata/:doctorId',getDoctorData)
+
+//Route for getting all appointments
+userRouter.get('/appointments',authMiddleware,roleMiddleware("Patient"),getAllAppointments)
 
 export default userRouter

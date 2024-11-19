@@ -26,6 +26,10 @@ const Header = () => {
     navigate("/profilePage")
   }
 
+  const handleMyAppointmentsClick=()=>{
+    navigate("/myAppointments")
+  }
+
   const fetchProfilePics = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -143,7 +147,7 @@ const Header = () => {
                   <div className={styles.dropdownMenu}>
                     <ul>
                       <li onClick={handleProfileClick}>Profile</li>
-                      <li>My Appointments</li>
+                      <li onClick={handleMyAppointmentsClick}>My Appointments</li>
                       <li onClick={handleLogout}>Logout</li>
                     </ul>
                   </div>
