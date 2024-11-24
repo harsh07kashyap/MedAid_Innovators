@@ -6,6 +6,7 @@ import doctorsModel from "../models/Doctors_Nurses.js";
 import labResultsModel from "../models/LabResults.js"
 import bcrypt from "bcrypt"
 import path from "path"
+import nodemailer from "nodemailer"
 
 
 //api for doctor login
@@ -61,7 +62,7 @@ const respondAppointment = async (req, res) => {
     const { doctorId, appointmentId } = req.params;
     const { status } = req.body;
 
-    // console.log("Doctor ID:", doctorId);
+    console.log("RespondAppointment function triggered");
     // console.log("Appointment ID:", appointmentId);
     // console.log("New Status:", status);
 
@@ -77,6 +78,7 @@ const respondAppointment = async (req, res) => {
       console.error("Appointment not found in doctor's record");
       return res.status(404).json({ message: "Appointment not found in doctor's record." });
     }
+    
 
     appointment.status = status;
     await doctor.save();
@@ -96,6 +98,32 @@ const respondAppointment = async (req, res) => {
 
     patientAppointment.status = status;
     await patient.save();
+
+    // Send email notification to the patient
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: "tradebhakt07@gmail.com", // Doctor's email
+        pass: process.env.APP_PASSWORD, // Doctor's plain password (or App Password if 2FA is enabled)
+      },
+    });
+
+    const mailOptions = {
+      from: "tradebhakt07@gmail.com",
+      to: patient.email,
+      subject: `Appointment ${status}`,
+      text: `Dear ${patient.name},\n\nYour appointment with ${doctor.name} has been ${status.toLowerCase()}.\n\nThank you,\n${doctor.name}`,
+    };
+
+    // Send email and handle any errors
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error: ', error);
+      } else {
+        console.log('Email sent: ', info.response);
+      }
+    });
+
 
     console.log("Appointment status updated successfully");
     res.status(200).json({ message: `Appointment ${status.toLowerCase()} successfully.` });
